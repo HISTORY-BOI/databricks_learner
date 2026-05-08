@@ -1,0 +1,172 @@
+[
+  {
+    "id": "init-001",
+    "topic": "Data Ingestion and Loading",
+    "subtopic": "Auto Loader",
+    "objective": "Use Auto Loader with schema enforcement and schema evolution in batch modes to land data into Unity-Catalog-governed tables.",
+    "question": "A data engineer uses Auto Loader to ingest JSON files from cloud storage into a Unity Catalog Delta table. New source files sometimes contain additional columns not seen before. Which configuration correctly enables automatic schema evolution?",
+    "options": {
+      "A": ".option('cloudFiles.schemaEvolutionMode', 'none').option('cloudFiles.schemaLocation', '/mnt/schema')",
+      "B": ".option('cloudFiles.schemaLocation', '/mnt/schema').option('cloudFiles.schemaEvolutionMode', 'addNewColumns')",
+      "C": ".option('cloudFiles.inferSchema', 'true').option('cloudFiles.schemaEvolution', 'true')",
+      "D": ".option('cloudFiles.schemaLocation', '/mnt/schema')"
+    },
+    "correct_answer": "B",
+    "explanation": "Auto Loader requires 'cloudFiles.schemaLocation' (to persist the inferred schema) AND 'cloudFiles.schemaEvolutionMode' set to 'addNewColumns' to automatically merge new columns from incoming files. Option A disables evolution. Option C uses non-existent options. Option D stores the schema but does not configure evolution behaviour.",
+    "created_at": "2026-05-08",
+    "source": "sample"
+  },
+  {
+    "id": "init-002",
+    "topic": "Data Ingestion and Loading",
+    "subtopic": "COPY INTO command",
+    "objective": "Use the COPY INTO command to incrementally load files from cloud object storage into Unity-Catalog-governed tables.",
+    "question": "A data engineer runs a daily job that uses COPY INTO to load new CSV files from an S3 path into a Delta table. On day two, only the newly arrived files should be loaded. What is the default behaviour of COPY INTO that enables this?",
+    "options": {
+      "A": "COPY INTO tracks a watermark timestamp and only loads files modified after the last run.",
+      "B": "COPY INTO is idempotent and maintains a log of already-loaded files, skipping them on subsequent runs.",
+      "C": "COPY INTO requires a MERGE statement to deduplicate rows after each load.",
+      "D": "COPY INTO automatically partitions files by date and only processes the current day's partition."
+    },
+    "correct_answer": "B",
+    "explanation": "COPY INTO is idempotent: Databricks internally tracks which files have already been loaded. Re-running the same COPY INTO command skips previously ingested files and only processes new ones. It does not use watermarks, and no additional MERGE is required for incremental loading.",
+    "created_at": "2026-05-08",
+    "source": "sample"
+  },
+  {
+    "id": "init-003",
+    "topic": "Data Transformation and Modeling",
+    "subtopic": "DataFrame joins",
+    "objective": "Combine DataFrames with operations such as inner join, left join, broadcast join, multiple keys, cross join, union, and union all.",
+    "question": "A data engineer joins a large transactions table (500 million rows) with a small currency_rates lookup table (200 rows). Which join strategy minimises shuffle and gives the best performance?",
+    "options": {
+      "A": "Sort-merge join, because it handles large datasets most efficiently.",
+      "B": "Cross join, because it guarantees every currency rate is matched.",
+      "C": "Broadcast join by broadcasting currency_rates, because the small table fits in memory on each executor.",
+      "D": "Left join, because it avoids dropping unmatched rows from transactions."
+    },
+    "correct_answer": "C",
+    "explanation": "A broadcast join (hint: broadcast()) sends the small table to every executor, eliminating the expensive shuffle that a sort-merge join requires. Broadcast joins are ideal when one side is small enough to fit in memory (controlled by spark.sql.autoBroadcastJoinThreshold, default 10 MB). Cross join and left join describe join semantics, not performance strategies.",
+    "created_at": "2026-05-08",
+    "source": "sample"
+  },
+  {
+    "id": "init-004",
+    "topic": "Data Transformation and Modeling",
+    "subtopic": "Deduplication and aggregation",
+    "objective": "Perform data deduplication operations and aggregate operations on DataFrames.",
+    "question": "A data engineer needs to compute the total sales amount and the number of distinct customers per region from a DataFrame sales_df with columns: region, customer_id, amount. Which PySpark code is correct?",
+    "options": {
+      "A": "sales_df.groupBy('region').agg(sum('amount').alias('total_sales'), count('customer_id').alias('unique_customers'))",
+      "B": "sales_df.groupBy('region').agg(sum('amount').alias('total_sales'), countDistinct('customer_id').alias('unique_customers'))",
+      "C": "sales_df.groupBy('region').agg(sum('amount').alias('total_sales'), approx_count_distinct('amount').alias('unique_customers'))",
+      "D": "sales_df.groupBy('region').agg(collect_set('amount').alias('total_sales'), countDistinct('customer_id').alias('unique_customers'))"
+    },
+    "correct_answer": "B",
+    "explanation": "countDistinct('customer_id') counts unique customer IDs per group, which is the correct function. count() in option A counts all rows (including duplicates). approx_count_distinct() in option C approximates distinctness and is applied to the wrong column. collect_set() in option D returns a set, not a sum.",
+    "created_at": "2026-05-08",
+    "source": "sample"
+  },
+  {
+    "id": "init-005",
+    "topic": "Working with Lakeflow Jobs",
+    "subtopic": "Job schedules and trigger types",
+    "objective": "Implement job schedules using Lakeflow Jobs with an understanding of trigger types (scheduled, file arrival, and table update).",
+    "question": "A pipeline must process new data as soon as it lands in an S3 bucket, rather than on a fixed time schedule. Which Lakeflow Jobs trigger type should the data engineer configure?",
+    "options": {
+      "A": "Scheduled trigger with a 1-minute cron expression.",
+      "B": "File arrival trigger pointing to the S3 path.",
+      "C": "Table update trigger on the source Delta table.",
+      "D": "Continuous trigger with micro-batch intervals."
+    },
+    "correct_answer": "B",
+    "explanation": "A file arrival trigger monitors a cloud storage location and automatically starts a job run when new files appear. This is more efficient than a 1-minute cron (option A) because it reacts immediately and avoids unnecessary runs when no data arrives. Table update triggers (option C) watch Delta tables, not object storage. Continuous triggers (option D) are a Spark Structured Streaming concept, not a Lakeflow Jobs trigger type.",
+    "created_at": "2026-05-08",
+    "source": "sample"
+  },
+  {
+    "id": "init-006",
+    "topic": "Governance and Security",
+    "subtopic": "Managed vs external tables",
+    "objective": "Differentiate between managed and external tables in Unity Catalog and perform basic operations on them.",
+    "question": "A data engineer drops a managed table in Unity Catalog. A colleague then drops an external table. What happens to the underlying data files in each case?",
+    "options": {
+      "A": "Both managed and external table data files are deleted when the table is dropped.",
+      "B": "Managed table files are deleted; external table files remain in their storage location.",
+      "C": "External table files are deleted; managed table files are moved to a recycle bin.",
+      "D": "Neither table's data files are deleted; only the metadata is removed."
+    },
+    "correct_answer": "B",
+    "explanation": "For managed tables, Unity Catalog controls the data lifecycle: dropping the table deletes both the metadata and the underlying data files. For external tables, Unity Catalog only manages the metadata; the data files remain in the user-specified storage location after the table is dropped.",
+    "created_at": "2026-05-08",
+    "source": "sample"
+  },
+  {
+    "id": "init-007",
+    "topic": "Governance and Security",
+    "subtopic": "Access controls (GRANT, REVOKE, DENY)",
+    "objective": "Configure access controls using the UI and SQL by applying GRANT, REVOKE, and DENY privileges to principals at appropriate levels of the security hierarchy.",
+    "question": "A data engineer needs to give the analyst group SELECT access to all current and future tables in the schema sales_data. The group already has USE CATALOG and USE SCHEMA privileges. Which SQL command achieves this?",
+    "options": {
+      "A": "GRANT ALL PRIVILEGES ON SCHEMA sales_data TO analysts;",
+      "B": "GRANT SELECT ON ALL TABLES IN SCHEMA sales_data TO analysts;",
+      "C": "GRANT SELECT ON SCHEMA sales_data TO analysts;",
+      "D": "GRANT READ ON SCHEMA sales_data TO analysts;"
+    },
+    "correct_answer": "C",
+    "explanation": "GRANT SELECT ON SCHEMA grants SELECT on all tables within the schema, including future tables. Option B (GRANT SELECT ON ALL TABLES IN SCHEMA) only grants access to tables that exist at the time the command is run — it does not cover future tables. Option A grants too many privileges. Option D uses an invalid privilege name (READ is not a valid Unity Catalog privilege).",
+    "created_at": "2026-05-08",
+    "source": "sample"
+  },
+  {
+    "id": "init-008",
+    "topic": "Databricks Intelligence Platform",
+    "subtopic": "Compute services",
+    "objective": "Understand Databricks Data Intelligence Platform's compute services, including their characteristics, limitations, and cost models.",
+    "question": "A team runs ad-hoc exploratory queries that require a cluster to start quickly without manual configuration. They want Databricks to manage the infrastructure automatically. Which compute option best fits this use case?",
+    "options": {
+      "A": "A single-node cluster with a fixed instance type chosen by the team.",
+      "B": "A job cluster that is created fresh for each job run.",
+      "C": "Serverless compute, which is fully managed by Databricks with instant startup.",
+      "D": "A high-concurrency all-purpose cluster shared across all team members."
+    },
+    "correct_answer": "C",
+    "explanation": "Serverless compute is managed entirely by Databricks, starts nearly instantly, and requires no infrastructure configuration. It is ideal for ad-hoc interactive workloads where quick startup and hands-off management are the priorities. Job clusters (option B) are optimised for scheduled jobs but still require some configuration. Shared clusters (option D) require manual setup and management.",
+    "created_at": "2026-05-08",
+    "source": "sample"
+  },
+  {
+    "id": "init-009",
+    "topic": "Implementing CI/CD",
+    "subtopic": "Automation Bundle (DABs)",
+    "objective": "Understand environment-specific configuration using Automation Bundle variables and overrides while promoting the same codebase across dev, test, and prod targets.",
+    "question": "A data engineer uses Databricks Asset Bundles (DABs) to deploy a pipeline across dev, test, and prod environments. Each environment uses a different catalog name. How should the engineer handle this environment-specific configuration?",
+    "options": {
+      "A": "Create a separate databricks.yml file for each environment with hard-coded catalog names.",
+      "B": "Use DAB variables with environment-specific overrides in the targets block of databricks.yml.",
+      "C": "Deploy the same notebook to all environments and use a Python if-else block to detect the environment at runtime.",
+      "D": "Store the catalog name in a Delta table and read it at job start time."
+    },
+    "correct_answer": "B",
+    "explanation": "DABs support variables and per-target overrides in databricks.yml. A single codebase can define a variable (e.g., ${var.catalog}) and override its value per target (dev, test, prod). This avoids duplication (option A) and runtime detection hacks (options C and D), which are fragile and hard to audit.",
+    "created_at": "2026-05-08",
+    "source": "sample"
+  },
+  {
+    "id": "init-010",
+    "topic": "Troubleshooting, Monitoring, and Optimization",
+    "subtopic": "Spark UI bottlenecks",
+    "objective": "Identify common performance bottlenecks such as data skew, shuffling, and disk spilling by interpreting stage-level metrics in the Spark UI.",
+    "question": "A data engineer notices that a Spark job's stage takes much longer than expected. In the Spark UI, most tasks complete in 2 seconds but a few tasks take over 5 minutes. What is the most likely cause?",
+    "options": {
+      "A": "Disk spilling caused by insufficient executor memory for sorting.",
+      "B": "Data skew, where a few partition keys contain significantly more data than others.",
+      "C": "Too many shuffle partitions causing excessive task overhead.",
+      "D": "Driver out-of-memory error causing task retries."
+    },
+    "correct_answer": "B",
+    "explanation": "When most tasks finish quickly but a few stragglers take much longer, this is the classic signature of data skew — certain partition keys have far more rows than others, causing a few tasks to process disproportionately large amounts of data. Disk spilling (option A) would slow most tasks. Too many partitions (option C) cause many short tasks, not a few long ones. Driver OOM (option D) would fail the job, not create stragglers.",
+    "created_at": "2026-05-08",
+    "source": "sample"
+  }
+]
