@@ -84,6 +84,35 @@ There are three ways to grow the question bank:
 
 All paths write to `data/questions.json` via `utils.questions.add_questions_bulk`.
 
+## Importing from examtopics.com
+
+You can import questions from pages you've saved manually from a logged-in examtopics session:
+
+1. Log in at examtopics.com and open each "view" page.
+2. Save each page into `examtopics_html/` (gitignored — examtopics content is paid/licensed). Two formats supported:
+   - **`.webarchive` (Safari, preferred)**: `File → Save As… → Format: Web Archive`. Bundles HTML and auth-fetched images. Required for image-based questions.
+   - **`.html` (plain)**: `File → Save As… → Format: Page Source`. Smaller; image-based questions are skipped.
+3. Verify the parser sees the cards:
+   ```bash
+   python3 import_examtopics.py --inspect
+   ```
+4. Preview the import:
+   ```bash
+   python3 import_examtopics.py --dry-run
+   ```
+5. Write to `data/questions.json`:
+   ```bash
+   python3 import_examtopics.py
+   ```
+   Images are extracted to `data/images/` (also gitignored).
+
+Rules:
+- Uses examtopics' stated "Correct Answer" (community vote distribution is rendered by JavaScript and not in the saved DOM).
+- Multi-answer questions get `correct_answer: "AB"` (sorted letters); the quiz UI switches to checkboxes when more than one letter.
+- Question and option images from `.webarchive` saves are written to `data/images/` and referenced by relative path in `images` / `option_images` fields.
+- For plain `.html` saves, questions referencing images are skipped (`image_missing`) since the CDN is auth-gated.
+- Duplicates: replaced **except** when the existing entry has `source: community_old_exam` (those are protected).
+
 ## Importing Legacy Questions
 
 If you have an `old_questions.md` file with community-voted Q&A (e.g., exported from a question dump), run:

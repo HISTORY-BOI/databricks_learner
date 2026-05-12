@@ -58,6 +58,26 @@ Source of truth: `utils/questions.py` (`TOPICS` dict). Topic and subtopic string
 - `data/questions.json` — question bank (appended via `add_questions_bulk`).
 - `utils/questions.py` — `TOPICS`, CRUD helpers.
 - `pages/3_KI_Generator.py` — in-app Claude generator + the canonical `SYSTEM_PROMPT`.
-- `import_batch.py` — JSON batch importer with validation. **Use this.**
+- `import_batch.py` — JSON batch importer with validation. **Use this for AI-generated questions.**
+- `import_examtopics.py` — parses pages saved from a logged-in examtopics session in `examtopics_html/`. Accepts `.webarchive` (Safari, preferred — includes auth-fetched images as subresources) and `.html` (plain — image-containing questions skipped). Uses examtopics' stated "Correct Answer" (community vote distribution is JS-rendered and absent from saved DOM). Multi-answer letters are sorted alphabetically (`"BA"` → `"AB"`). Question/option images are extracted to `data/images/` and referenced by relative path. Duplicates: replaces existing entries unless their source is `community_old_exam` (those are protected). Use `--inspect` to debug selectors if parsing yields 0.
 - `add_more_questions.py` — legacy hand-written-in-Python helper. Keep as fallback only.
-- `import_questions.py` — one-time importer for `old_questions.md` community exports.
+- `import_questions.py` — one-time importer for `old_questions.md` community exports; `map_topic` is reused by `import_examtopics.py`.
+
+## examtopics import workflow
+
+1. Log in at examtopics.com, open each "view" page. The stated "Correct Answer" is always in the saved DOM; the community vote bars are NOT (JS-rendered) and would not be captured even with full scrolling.
+2. Save each page into `examtopics_html/` (gitignored). **Verify file size > 0.** Two formats supported:
+   - **`.webarchive` (Safari, preferred)**: `File → Save As… → Format: Web Archive`. Bundles HTML + all auth-fetched images into one file. Enables full import including image-based questions.
+   - **`.html`**: `File → Save As… → Format: Page Source`. Smaller but image-based questions are skipped (CDN auth-gated).
+3. `python3 import_examtopics.py --inspect` to verify the parser sees question cards. If 0 found, adjust the `*_SELECTORS` lists at the top of the script.
+4. `python3 import_examtopics.py --dry-run` to preview counts.
+5. `python3 import_examtopics.py` to write. Images land in `data/images/` (gitignored).
+
+Skip categories reported per file: `no_question`, `no_options`, `no_answer`, `image_missing` (plain-HTML save of a question whose images we can't fetch).
+
+## Question schema additions
+
+Optional fields populated by the examtopics importer when images are available:
+- `images`: list of relative paths (e.g. `["data/images/image106.png"]`) — rendered above the question text.
+- `option_images`: dict like `{"A": "data/images/image106.png", ...}` — rendered next to / under each option.
+- `correct_answer`: for multi-answer questions, a sorted concatenation of letters (e.g. `"AB"`). The quiz UI switches to checkboxes when `len(correct_answer) > 1`.

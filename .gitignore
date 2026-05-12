@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+venv/
+.venv/
+.env
+
+# Saved examtopics HTML / webarchive pages and extracted images — paid/licensed content; do not commit.
+examtopics_html/
+data/images/
