@@ -436,7 +436,7 @@
       "D": "An ability to work with complex, nested data ingested from JSON files "
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. Spark SQL array (and the related struct/map) functions exist specifically to manipulate complex, nested data — the kind you get when reading JSON, where arrays and nested objects are common. A is too vague (Spark already handles many types). B describes partitioning / window functions. C describes interval and date/time functions.",
     "source": "examtopics",
     "id": "0ab8bc40-7727-47ca-bdbe-e6f4a408d469",
     "created_at": "2026-05-12"
@@ -454,7 +454,7 @@
       "E": "The ability to distribute complex data operations"
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. Delta Lake's signature benefit is the ability to use a single table for both batch and streaming reads/writes (it can act as both a streaming source and sink while preserving ACID guarantees). A (multi-language manipulation) is a notebook/Spark feature. B (real-time co-editing) is a notebook feature. C (failure alerts) belongs to Databricks SQL/Jobs. E (distributed operations) is Spark. [Community vote] D: 41.",
     "source": "examtopics",
     "id": "aa1c09a9-2b02-4484-bb29-9c1bff7c8295",
     "created_at": "2026-05-12"
@@ -471,7 +471,7 @@
       "D": "Unity Catalog"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. Auto Loader (`cloudFiles`) is built on top of **Spark Structured Streaming** — that's the engine that does the incremental processing. A (Checkpointing) is the *mechanism* Structured Streaming uses to remember which files have already been ingested, but checkpointing is a feature of Structured Streaming, not the tool itself. C (Databricks SQL) is a query/BI interface, not an ingestion engine. D (Unity Catalog) is governance/metadata.\n\n[Community vote] B: 27 (top, matches stated), A: 18. The minority votes for A confuse the *mechanism* (checkpointing) with the *tool* (Structured Streaming) — checkpointing is what Structured Streaming uses internally.",
     "source": "examtopics",
     "id": "b5691f44-9511-4dcd-bb38-a0a4642d8cba",
     "created_at": "2026-05-12"
@@ -488,7 +488,7 @@
       "D": "Data "
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. In the Databricks classic architecture, the **control plane** (Databricks-managed account) hosts the web UI, cluster manager, and notebooks metadata; the **data plane** sits in the customer's cloud account and is where compute runs and data lives. So only the data is in the customer's account. A, B, and C all live in the control plane. [Community vote] D: 8.",
     "source": "examtopics",
     "id": "62ca1df8-70e7-4a72-b56f-27948b5de102",
     "created_at": "2026-05-12"
@@ -505,7 +505,7 @@
       "D": "Auto Loader "
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. Auto Loader (`cloudFiles`) is purpose-built for incrementally detecting and processing only newly arrived files in cloud storage — exactly what the scenario describes (files keep accumulating, only process the new ones). A (Unity Catalog) is governance. B (Delta Lake) is the storage format, not a file-arrival detector. C (Databricks SQL) is a query interface. [Community vote] D: 6.",
     "source": "examtopics",
     "id": "5b7e6925-d45f-400f-900e-c0d6fc89c575",
     "created_at": "2026-05-12"
@@ -523,7 +523,7 @@
       "E": "They could redesign the data model to separate the data used in the final query into a new table."
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. Wrapping the SQL queries in PySpark gives you full Python control flow (`if datetime.today().weekday() == 6:` etc.) so you can conditionally execute the final query only on Sundays. A (file a feature request) is not a real solution. C would skip the daily queries. D (access control by day) is bizarre and doesn't change query scheduling. E (model redesign) doesn't address scheduling. [Community vote] B: 15.",
     "source": "examtopics",
     "id": "37b8ae12-9fe6-4b63-b642-919158165c7f",
     "created_at": "2026-05-12"
@@ -540,7 +540,7 @@
       "D": "Records that violate the expectation are added to the target dataset and recorded as invalid in the event log."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. With `ON VIOLATION DROP ROW`, DLT removes violating records from the target dataset and writes a metric (failed records count) to the pipeline event log; the run does NOT fail. A describes `ON VIOLATION FAIL UPDATE`. B and D describe a \"flag and keep\" behavior — DLT does not automatically add an `is_valid` column or write violators to the target.",
     "source": "examtopics",
     "id": "149b9426-e9cf-4e7d-b473-818543f47326",
     "created_at": "2026-05-12"
@@ -557,7 +557,7 @@
       "D": "Clone"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. Databricks Repos supports clone, commit, pull, push, branch creation, and basic conflict resolution from the UI/API, but it does NOT support merging branches — merges are performed in the upstream Git provider, typically via a pull request. A (commit), B (pull) and D (clone) are all natively supported inside Databricks Repos.",
     "source": "examtopics",
     "id": "3940b0d9-e564-4089-b176-ef9d4a269e26",
     "created_at": "2026-05-12"
@@ -574,7 +574,7 @@
       "D": "They can navigate to the DLT pipeline page, click on each table, and view the data quality statistics."
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. The DLT pipeline page exposes per-table **data quality statistics** showing how many records were processed, dropped, or failed for each expectation — clicking each table tells you exactly where rows are being lost. A presumes expectations aren't already set up (they are, per the scenario). B (\"Error\" button) shows pipeline errors, not expectation drop counts. C (email) doesn't tell you which table. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "5483caee-a4fa-4046-87da-a5c4378d1043",
     "created_at": "2026-05-12"
@@ -591,7 +591,7 @@
       "D": "They can create a new job from scratch and add both tasks to run concurrently."
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. To make the new task run *before* the original, you create the new task and then make the **original task depend on the new task** — i.e. add the new task as a dependency of the original. In Lakeflow Jobs, \"X depends on Y\" means Y runs first. C reverses the relationship: it would make the new task run *after* the original. A (cloning) replaces the task instead of adding one. D (a separate concurrent job) doesn't enforce \"prior to.\"\n\n[Community vote] B: 9 (top, matches stated), C: 6. The C voters get the dependency direction backwards — a common trap in this exam, worth memorising: *dependency = prerequisite = runs first*.",
     "source": "examtopics",
     "id": "f60209f7-2f6a-41f8-bc89-c6f1a7d75da0",
     "created_at": "2026-05-12"
@@ -608,7 +608,7 @@
       "D": "They can set a limit to the number of individuals that are able to manage the query’s refresh schedule."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. The Databricks SQL query scheduler lets you specify an **end date** for the refresh schedule, after which the schedule stops and the SQL warehouse no longer auto-resumes for that query. A (DBU limit) isn't a per-query setting. B (number-of-refreshes cap) isn't a scheduler feature. D (limit who can manage the schedule) doesn't stop the schedule from running. [Community vote] C: 1.",
     "source": "examtopics",
     "id": "8bdd3cc8-3038-4a85-a374-68407c5442c2",
     "created_at": "2026-05-12"
@@ -625,7 +625,7 @@
       "D": "CREATE TABLE all_transactions AS SELECT * FROM march_transactions INTERSECT SELECT * from april_transactions;"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. `UNION` combines the two result sets and removes duplicates (here there are none, so `UNION ALL` would be equivalent and slightly cheaper). A (INNER JOIN) and C (OUTER JOIN) require a join condition and would multiply rows. D (INTERSECT) returns only rows present in BOTH tables — the opposite of what's needed. [Community vote] B: 2.",
     "source": "examtopics",
     "id": "8e226ce2-1687-4e95-ad6a-d89426c53983",
     "created_at": "2026-05-12"
@@ -642,7 +642,7 @@
       "D": "When another task needs to use as little compute resources as possible"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. \"Depends On\" in a Lakeflow/Databricks Job task means the listed predecessor task must complete **successfully** before this task runs — that's how you express ordering in a multi-task job. A (replacement) is not how dependencies work. C (shared libraries) is configured separately. D (compute usage) is unrelated to dependency ordering. [Community vote] B: 1.",
     "source": "examtopics",
     "id": "84f234ca-3ee4-40f8-9bc4-d6f5007dda62",
     "created_at": "2026-05-12"
@@ -659,7 +659,7 @@
       "D": "A location of a target database for the written data"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. A DLT pipeline definition requires at least one notebook (or source file) containing the dataset definitions — the pipeline can't run without code to materialise. A (a key-value config), C (a storage path), and D (a target database) are all optional in current DLT/Lakeflow Declarative Pipelines (with Unity Catalog, storage is managed; target is optional). [Community vote] B: 1.",
     "source": "examtopics",
     "id": "7ba3ae29-6586-4138-a22b-5679c63f9d87",
     "created_at": "2026-05-12"
@@ -677,7 +677,7 @@
       "E": "Avoiding vendor lock-in "
     },
     "correct_answer": "E",
-    "explanation": "Stated answer from examtopics: E.",
+    "explanation": "E. Because the lakehouse stores data in open formats (Delta Lake/Parquet) and uses open APIs, customers can read/write the same data with non-Databricks tools — that means **no vendor lock-in**. A, B, C, and D are all platform benefits, but none of them is specifically *because* the technology is open source. [Community vote] E: 9.",
     "source": "examtopics",
     "id": "4af71a6c-4129-46e3-b308-baa1582251b6",
     "created_at": "2026-05-12"
@@ -694,7 +694,7 @@
       "D": "if day_of_week == 1 and review_period: "
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D is correct. Python uses `==` for equality comparison (not `=`, which is assignment) and `and` for boolean logic (not `&`, which is bitwise). `review_period` is already a boolean, so it is tested directly, not compared to the string \"True\". A and B both use `=`, which would be a SyntaxError. C combines `&` (bitwise) with a stray colon/quotes and is invalid syntax.",
     "source": "examtopics",
     "id": "04db0ab0-5b79-45f6-a6c0-e447d7acdfd5",
     "created_at": "2026-05-12"
@@ -712,7 +712,7 @@
       "E": "VACUUM"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. **OPTIMIZE** is the Delta Lake command that compacts small files into larger ones (bin-packing, and with Liquid Clustering / ZORDER also clusters data). A (REDUCE) and C (COMPACTION) aren't Delta keywords. D (REPARTITION) is a DataFrame operation that changes partition count in memory, not a file-compaction command. E (VACUUM) removes stale files but doesn't compact active ones. [Community vote] B: 16.",
     "source": "examtopics",
     "id": "cde57c7a-9240-4dc0-8eb8-23760f4b4e83",
     "created_at": "2026-05-12"
@@ -730,7 +730,7 @@
       "E": "Data lakehouse "
     },
     "correct_answer": "E",
-    "explanation": "Stated answer from examtopics: E.",
+    "explanation": "E. The data lakehouse combines the openness and scale of a data lake with the ACID guarantees and BI performance of a data warehouse on a single platform, eliminating the need for separate, use-case-specific systems. B (lake alone) and C (warehouse alone) are exactly the silos the question wants to consolidate. A and D are trivially wrong given E is the explicit unifying option.",
     "source": "examtopics",
     "id": "0a8e30b2-9ddd-4831-a896-efc845f3fa7a",
     "created_at": "2026-05-12"
@@ -748,7 +748,7 @@
       "E": "They can change the default language of the notebook to SQL"
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. Magic commands let you switch language per cell — `%sql` at the top of a cell tells Databricks to run that cell as SQL, leaving the notebook's default language (Python) intact. A is false. B (attach cell to endpoint) is not a feature. C (just write SQL) won't parse as Python. E (change the default) would affect all cells. [Community vote] D: 6.",
     "source": "examtopics",
     "id": "22576577-a68b-49a7-a1b3-df1a88e63286",
     "created_at": "2026-05-12"
@@ -766,7 +766,7 @@
       "E": "Parquet files will become Delta tables"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. Parquet files embed their schema in the file footer, so the reader knows column names and types immediately; CSV has no schema, only a header row of strings, so types must be inferred or declared. A (partitioning) works for both formats. B is wrong — CTAS *can* be used on file paths. D (\"optimized\") is too vague. E is wrong — Parquet doesn't auto-convert to Delta. [Community vote] C: 17, D: 1, B: 1.",
     "source": "examtopics",
     "id": "85599456-2d10-467f-a8aa-dddb7540c565",
     "created_at": "2026-05-12"
@@ -783,7 +783,7 @@
       "D": "Scheduled Workflows run continuously until manually stopped."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "⚠️ The question is poorly worded — it asks for a \"method\" but each option describes a property of scheduled workflows, not an action to take. C is the stated (and only factually correct) option: a scheduled job spins its cluster up for the run and tears it down afterward, reducing cost compared with continuously running compute. A is wrong — scheduled workflows do NOT require an always-on cluster. B describes file-arrival / data-driven triggers, not time-based schedules. D describes continuous mode, not scheduled mode.",
     "source": "examtopics",
     "id": "02fa4a2d-9a3b-49fc-9679-0191d7d38097",
     "created_at": "2026-05-12"
@@ -800,7 +800,7 @@
       "D": "Needs ALL PRIVILEGES at the SCHEMA level"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. In Unity Catalog, view permissions are decoupled from the underlying tables: if you have `SELECT` on the view (plus `USE CATALOG`/`USE SCHEMA`, which the question states are already granted), Databricks reads the underlying tables on your behalf using the *view owner's* privileges. You do **not** need SELECT on the underlying table. A reflects the legacy `hive_metastore` model, where the reader needed access to both. C and D grant far more than the minimum.\n\n[Community vote] B: 13 (top, matches stated), A: 9. The A votes are people remembering the legacy Hive metastore behaviour — Unity Catalog changed this, which is a frequent exam catch.",
     "source": "examtopics",
     "id": "f250c6e3-4e3a-4cf0-b50d-3dc19df73638",
     "created_at": "2026-05-12"
@@ -817,7 +817,7 @@
       "D": "CONSTRAINT valid_location EXPECT (location != NULL) ON VIOLATION FAIL"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. To make a DLT pipeline **terminate** when an expectation is violated, use `ON VIOLATION FAIL UPDATE` — this stops the update and surfaces the error. A is wrong on two counts (it checks `location = NULL`, which is always false in SQL; you need `IS NULL` / `IS NOT NULL`, and it has no action clause). C uses invalid syntax (`ON DROP ROW` instead of `ON VIOLATION DROP ROW`), and DROP ROW wouldn't stop the pipeline anyway. D omits the required `UPDATE` keyword. [Community vote] B: 8, D: 2.",
     "source": "examtopics",
     "id": "a8eb4dd0-6cb0-4547-9182-635d89654b81",
     "created_at": "2026-05-12"
@@ -834,7 +834,7 @@
       "D": "A managed table where the location is pointing to specific path in external location."
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. To control exactly where data files live, you use an **external table** with an explicit `LOCATION` clause pointing at the path. B describes a schema-level managed location (which would make new tables there *managed*, not external). C and D are both managed tables — managed tables in Unity Catalog are stored at the catalog/schema's managed location and don't accept a per-table `LOCATION`. [Community vote] A: 5.",
     "source": "examtopics",
     "id": "3883c634-5dc4-4f4f-b273-b68828658855",
     "created_at": "2026-05-12"
@@ -851,7 +851,7 @@
       "D": "The pipeline will need to be written entirely in Python"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. A single DLT pipeline can include multiple notebooks in different languages (Python + SQL), so the engineer and analyst can keep their respective languages. B and D incorrectly force a single language. C is wrong — DLT supports streaming sources natively (STREAMING LIVE TABLE / `dlt.read_stream`). [Community vote] A: 8, C: 1.",
     "source": "examtopics",
     "id": "f71af9ad-eef7-47ca-b18a-071048ad6fc7",
     "created_at": "2026-05-12"
@@ -868,7 +868,7 @@
       "D": "Data lakehouse "
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. The **data lakehouse** is the architectural pattern that unifies the data warehouse (BI / SQL / governed tables) and the data lake (raw / unstructured / ML) into one platform — exactly the \"simplify siloed architectures\" framing. A (Delta Lake) is the underlying *storage* technology. B (data lake) and C (data warehouse) are each one of the silos, not the unification. [Community vote] D: 6.",
     "source": "examtopics",
     "id": "d100f5c5-b612-4412-b5ff-d10fa6f5d4e4",
     "created_at": "2026-05-12"
@@ -885,7 +885,7 @@
       "D": "Use the VACUUM command to remove all versions of the table older than two weeks, then the analyst can query the remaining version."
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. Delta time travel lets you query a previous version with `SELECT ... VERSION AS OF n` or `TIMESTAMP AS OF '…'` — you can identify the version via `DESCRIBE HISTORY` and either share that with the analyst or `CLONE` it into a new table. A (truncate + reload) is destructive and unnecessary. C (RESTORE) rolls the *live* table back, affecting everyone. D (VACUUM) permanently deletes old versions — exactly the wrong move. [Community vote] B: 4.",
     "source": "examtopics",
     "id": "5f46c82b-a209-466d-b610-f65ed5b23436",
     "created_at": "2026-05-12"
@@ -903,7 +903,7 @@
       "E": "All datasets will be updated at set intervals until the pipeline is shut down. The compute resources will persist to allow for additional testing. "
     },
     "correct_answer": "E",
-    "explanation": "Stated answer from examtopics: E.",
+    "explanation": "E. Two flags interact here:\n- **Continuous pipeline mode** → updates keep running at intervals; the pipeline does not shut down on its own → rules out A, C, D.\n- **Development mode** → compute is kept up between runs/iterations to avoid waiting for cluster startup, specifically *to allow for additional testing* → this is the distinguishing phrase in E.\n\nB is close but generic (\"persist until pipeline shut down\") and doesn't capture the Development-mode behaviour. A, C, D all wrongly say the pipeline ends after one update.\n\n[Community vote] E: 13 (top, matches stated), B: 5, D: 1. B is the strongest distractor because in Production mode it would be correct — the question hinges on noticing the Development flag.",
     "source": "examtopics",
     "id": "274b2055-712d-413b-aa7f-d7e59f33a9ea",
     "created_at": "2026-05-12"
@@ -920,7 +920,7 @@
       "D": "4 6 6"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A (3, 6, 5). With column values 0, 1, 2, NULL, 2, 3:\n- `count_if(col1 > 1)` = count of rows where the predicate is TRUE = three rows (values 2, 2, 3). NULL > 1 is NULL (not TRUE), so it isn't counted. → 3\n- `count(*)` = all rows including NULL = 6\n- `count(col1)` = non-NULL values = 5\n\nB and D wrongly count NULL in `count_if` (NULL comparisons never evaluate TRUE). C wrongly says `count(col1)` includes NULL (it doesn't — `count(col)` excludes NULL; only `count(*)` includes them). [Community vote] A: 17.",
     "source": "examtopics",
     "id": "af8332b3-6e98-4ad7-afd9-3c23d346ec55",
     "created_at": "2026-05-12"
@@ -937,7 +937,7 @@
       "D": "Serverless SQL warehouse"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. **Jobs clusters** are created at job-start, terminated at job-end, and are the recommended (cheaper, isolated) compute for scheduled production workloads. A (All-purpose cluster) is intended for interactive notebook development — keeping one running for scheduled jobs is wasteful and exposes the job to shared-state issues. B (\"any UC-enabled cluster\") is too vague — a UC-enabled all-purpose cluster is still the wrong fit. D (Serverless SQL warehouse) is for SQL workloads, not Python notebooks.\n\n[Community vote] C: 4 (top, matches stated), A: 2.",
     "source": "examtopics",
     "id": "8d0fd41a-d406-48e8-a262-f822a007eac9",
     "created_at": "2026-05-12"
@@ -955,7 +955,7 @@
       "E": "Records that violate the expectation are added to the target dataset and flagged as invalid in a field added to the target dataset."
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. `ON VIOLATION FAIL UPDATE` causes the DLT update to fail when any row violates the expectation — the pipeline run aborts. A and C describe DROP ROW behaviour. D describes the default (no `ON VIOLATION` clause) where rows are kept and flagged in the event log. E (extra column in target) is not a DLT behaviour. [Community vote] B: 5.",
     "source": "examtopics",
     "id": "67c634ed-8a2d-4000-82fd-2e229166f7aa",
     "created_at": "2026-05-12"
@@ -973,7 +973,7 @@
       "E": "They can increase the maximum bound of the SQL endpoint's scaling range."
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. The pain point is cold-start latency on a stopped classic SQL warehouse, which can take minutes to spin up. Serverless SQL warehouses start in seconds because Databricks maintains a warm pool — this is the documented fix for \"queries to a non-running endpoint are slow.\" A bundles serverless with an unrelated spot-instance setting and over-specifies the fix. B (Auto Stop) makes the cold-start problem worse, not better. C and E (cluster size, scaling range) only improve performance once the warehouse is already running.",
     "source": "examtopics",
     "id": "4ea4610f-2b02-4345-bc31-624e1cebdaa9",
     "created_at": "2026-05-12"
@@ -990,7 +990,7 @@
       "D": "GRANT ALL PRIVILEGES ON TABLE team TO sales;"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. `GRANT ALL PRIVILEGES ON TABLE sales TO team` is the correct syntax to give full table privileges. B uses an invented `SELECT CREATE MODIFY` syntax (you'd grant each separately, and CREATE isn't a table-level privilege). C grants only SELECT. D has the principal and object swapped (`TO sales`). [Community vote] A: 2.",
     "source": "examtopics",
     "id": "eb175aaf-d54c-4cbc-b9da-079b484ae0b9",
     "created_at": "2026-05-12"
@@ -1007,7 +1007,7 @@
       "D": "GRANT USAGE ON DATABASE customers TO team; "
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. `GRANT USAGE ON DATABASE customers TO team` gives the group the minimum right to list and reference objects inside that database (legacy hive-metastore syntax; under Unity Catalog the equivalent is `GRANT USE SCHEMA`). A targets a non-existent CATALOG named `customers` and \"VIEW\" is not a privilege. B grants CREATE, which exceeds least privilege (the team just needs to see existing tables). C swaps the operands — it would grant USAGE on a catalog `team` to a principal `customers`.",
     "source": "examtopics",
     "id": "02fa8b70-564c-44bf-9e6c-7625afb27590",
     "created_at": "2026-05-12"
@@ -1024,7 +1024,7 @@
       "D": "They can ensure the dashboard’s SQL endpoint is not one of the included query’s SQL endpoint."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. **Auto Stop** terminates the SQL warehouse after a configurable idle period — so once the daily refresh finishes, the warehouse shuts itself down and you're not billed for idle time. A (matching endpoints) doesn't reduce running time. B (serverless) reduces *startup* time but the warehouse still runs while queries run; you still need an idle-shutdown to minimise total runtime. D doesn't address running time. [Community vote] C: 2.",
     "source": "examtopics",
     "id": "9dd8777a-4cf3-4965-9496-ab7c68a87209",
     "created_at": "2026-05-12"
@@ -1041,7 +1041,7 @@
       "D": "A data lakehouse supports ACID-compliant transactions. "
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. **ACID-compliant transactions** are the lakehouse feature that prevents partial writes, dirty reads, and concurrent-write corruption — directly improving data quality versus a plain data lake (where parquet/CSV files can be half-written or inconsistent). A (open formats), B (SQL access), and C (structured + unstructured storage) are real lakehouse benefits but are about *flexibility*, not *quality*. [Community vote] D: 4.",
     "source": "examtopics",
     "id": "885add33-856e-4b31-856c-cba32fe501af",
     "created_at": "2026-05-12"
@@ -1058,7 +1058,7 @@
       "D": "An automated report needs to be made reproducible."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. **Cluster pools** keep idle, pre-warmed VM instances ready, so when a job acquires a cluster it skips the multi-minute VM-provisioning wait — directly minimising refresh latency. A (version control) belongs to Git/Repos. B (runnable by all) is a permissions concern. D (reproducibility) is a notebook/config concern. [Community vote] C: 2.",
     "source": "examtopics",
     "id": "2e3f355f-fddf-4ad7-8c0b-95ce6884e0ab",
     "created_at": "2026-05-12"
@@ -1075,7 +1075,7 @@
       "D": "Databricks Filesystem"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. The **Databricks web application** lives entirely in the control plane (Databricks-managed account). A (Worker node) and C (Driver node) are compute and run in the customer's data plane. D (DBFS / data storage) is in the customer's cloud account. [Community vote] B: 4.",
     "source": "examtopics",
     "id": "2ae8bfac-aba4-43bf-804f-e7443ac79397",
     "created_at": "2026-05-12"
@@ -1092,7 +1092,7 @@
       "D": "Databricks Repos supports the use of multiple branches "
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. Databricks Repos integrates with a remote Git provider and supports the full **branching** workflow (feature branches, PRs, merges), while the built-in notebook history is a single linear timeline. A is wrong — notebook versioning *also* lets you revert. B is wrong — both live within Databricks (Repos additionally syncs to a Git provider). C — neither tool offers per-change in-line comments natively. [Community vote] D: 2.",
     "source": "examtopics",
     "id": "96080a8e-7e1c-4935-8d6c-90c1e9b2c824",
     "created_at": "2026-05-12"
@@ -1109,7 +1109,7 @@
       "D": "Cloud-specific integrations"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. Because the lakehouse uses open formats (Delta/Parquet) and open APIs, customers can read and write the same data from non-Databricks tools — preventing **vendor lock-in**. B (governance) is a Unity Catalog feature, not specifically an open-source benefit. C (workload scale) comes from Spark/cloud scaling. D (cloud-specific integrations) is the opposite of what open source provides. [Community vote] A: 3.",
     "source": "examtopics",
     "id": "5ed4b88c-f99b-4e51-9260-6b2fe93d0a59",
     "created_at": "2026-05-12"
@@ -1126,7 +1126,7 @@
       "D": "Repos"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. **Catalog Explorer** is where you browse Unity Catalog objects (catalogs, schemas, tables) and view the Permissions tab showing your effective privileges on each object. A (Jobs) is workflow scheduling. B (Dashboards) is for visualisation. D (Repos) is for code/version control. [Community vote] C: 2.",
     "source": "examtopics",
     "id": "9ac1ae4a-c6a0-44e4-9854-d9e99f66d1f9",
     "created_at": "2026-05-12"
@@ -1143,7 +1143,7 @@
       "D": "Delta"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. A Delta table is stored as **Parquet** data files plus a transaction log (the `_delta_log` directory with JSON/Checkpoint files). Delta isn't itself a file format — it's a table format built on top of Parquet. A (CSV) and C (JSON) are unrelated formats. [Community vote] B: 2.",
     "source": "examtopics",
     "id": "efee4903-7b13-4112-9ddb-651815a6ab5c",
     "created_at": "2026-05-12"
@@ -1160,7 +1160,7 @@
       "D": "UPDATE VALUES ('a1', 6, 9.4) my_table"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. The standard SQL syntax for appending a row is `INSERT INTO <table> VALUES (...)`. B reverses the keyword order. C and D use `UPDATE`, which modifies existing rows and requires a `SET ... WHERE` clause — it does not insert new rows. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "906b83fb-8b2f-4649-9da2-61d61efc579b",
     "created_at": "2026-05-12"
@@ -1177,7 +1177,7 @@
       "D": "REPARTITION"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. **OPTIMIZE** is the Delta Lake command that bin-packs small files into larger ones to reduce read overhead. B (VACUUM) removes files no longer referenced by the transaction log (it doesn't compact). C (COMPACTION) is not a Delta keyword. D (REPARTITION) is a DataFrame operation that changes in-memory partition count, not a Delta file-compaction command. [Community vote] A: 1.",
     "source": "examtopics",
     "id": "34bd309e-2e33-4436-a2dd-a6762c82eda2",
     "created_at": "2026-05-12"
@@ -1194,7 +1194,7 @@
       "D": "APPEND"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. **MERGE** (upsert) matches incoming rows to existing rows on a key; `WHEN MATCHED` updates and `WHEN NOT MATCHED INSERT` writes only new rows — so duplicates can't be written. A (DROP) deletes the table. B (INSERT) blindly appends and would create duplicates. D (APPEND) isn't a SQL keyword (it's a DataFrame save mode that also doesn't deduplicate). [Community vote] C: 1.",
     "source": "examtopics",
     "id": "1d3385b1-cfa5-443e-b878-dc3de1a1047f",
     "created_at": "2026-05-12"
@@ -1211,7 +1211,7 @@
       "D": "dbfs:/user/hive/database"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. With no `LOCATION` specified, a Hive-metastore database is created under the default warehouse path, which on Databricks is `dbfs:/user/hive/warehouse` — the new database becomes a subdirectory (`customer360.db`) of that path. A, C, and D are not the actual default warehouse path. [Community vote] B: 3.",
     "source": "examtopics",
     "id": "a70533d8-b8d7-4a65-8514-b9286d490db8",
     "created_at": "2026-05-12"
@@ -1228,7 +1228,7 @@
       "D": "The table was external"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. For **managed** tables, the metastore controls both the metadata AND the underlying data files — DROP TABLE deletes both. B (size) is irrelevant. C (no location) — managed tables by definition have no user-specified location, but that's *why* they're managed, not the explanation for file deletion. D is the opposite — external table DROP only removes metadata and leaves files intact. [Community vote] A: 16.",
     "source": "examtopics",
     "id": "7694ff20-c6a8-4b10-bf1d-b82d66de1480",
     "created_at": "2026-05-12"
@@ -1245,7 +1245,7 @@
       "D": "Parquet files have the ability to be optimized"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. Parquet embeds the schema (column names + types) in the file footer, so the CTAS reader knows types immediately; CSV is just strings with no schema. A (partitioning) works for both formats. B is false — a Parquet file does not auto-convert to Delta. D (\"can be optimized\") is too vague to be the distinguishing benefit. [Community vote] C: 6.",
     "source": "examtopics",
     "id": "bf8f476a-1bd6-4588-b502-3e6e3202bde9",
     "created_at": "2026-05-12"
@@ -1262,7 +1262,7 @@
       "D": "CONVERT"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. **PIVOT** rotates rows of a column into columns (long → wide). A (TRANSFORM) applies a function to elements, not for reshape. C (SUM) is aggregation. D (CONVERT) is type casting in other SQL dialects, not a reshape keyword. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "778041bb-417a-4116-969e-9a600d6e8d2d",
     "created_at": "2026-05-12"
@@ -1279,7 +1279,7 @@
       "D": "Checkpointing and Idempotent Sinks"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. Structured Streaming records the offset range of each trigger using **checkpointing** (which persists query progress, including the source offsets being processed, to the checkpoint location) and **write-ahead logs** (the offset log within the checkpoint directory, written *before* the batch executes so it can be recovered after a failure). Together these let the engine restart and re-process from the exact failure point. B is wrong because replayable sources and idempotent sinks describe the broader end-to-end exactly-once *guarantee*, not the offset-tracking mechanism itself. C and D mix in idempotent sinks, which prevent duplicate writes on the sink side but don't *record* offsets.\n\n[Community note] Vote is split 20–20 between A and D on examtopics. D (Checkpointing + Idempotent Sinks) is a common alternative because Databricks/Spark docs often cite that pairing when explaining exactly-once delivery. The Apache Spark documentation specifically calls out \"checkpointing and write-ahead logs\" as the offset-recording mechanism, so A is the more precise answer to the literal question — but be aware the wording is contested.",
     "source": "examtopics",
     "id": "fb8bbb95-4ca5-434a-9cfe-a9d6ad168929",
     "created_at": "2026-05-12"
@@ -1296,7 +1296,7 @@
       "D": "Gold tables are more likely to contain truthful data than Silver tables."
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. In the medallion architecture, **Gold** tables are business-level views typically built via aggregations and joins on top of Silver; Silver tables are cleaned, conformed, but row-level. B, C, and D are subjective claims (\"more valuable\", \"less refined\", \"more truthful\") — not the defining structural difference, which is the presence of aggregations. [Community vote] A: 3.",
     "source": "examtopics",
     "id": "1b5d42c9-efed-4c0a-9e01-213c88eefcc7",
     "created_at": "2026-05-12"
@@ -1313,7 +1313,7 @@
       "D": "CREATE STREAMING LIVE TABLE should be used when the previous step in the DLT pipeline is static."
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. `STREAMING LIVE TABLE` (now just \"STREAMING TABLE\" in Lakeflow Declarative Pipelines) is for **incremental** processing — each pipeline update processes only new rows since the last checkpoint. `LIVE TABLE` (now \"MATERIALIZED VIEW\") fully recomputes every update. A and D talk about adjacent table types, which doesn't dictate the streaming choice. C is wrong — complex aggregations actually favour the full-recompute LIVE TABLE. [Community vote] B: 3.",
     "source": "examtopics",
     "id": "3a1bcdf1-be88-46d5-a8d1-34b9286088c3",
     "created_at": "2026-05-12"
@@ -1330,7 +1330,7 @@
       "D": "All datasets will be updated once and the pipeline will shut down. The compute resources will be terminated."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. In **Production mode**, compute is deployed for the update and **terminated** when the pipeline stops (unlike Development mode, which keeps it warm). In **Continuous mode**, datasets are updated at intervals until you stop the pipeline (unlike Triggered mode, which runs once). C captures both correctly. A wrongly says compute persists (that's Development mode). B and D wrongly say the pipeline shuts down after one update (that's Triggered mode). [Community vote] C: 6.",
     "source": "examtopics",
     "id": "5dbdddc2-4777-4eee-98c5-579d0ac01c02",
     "created_at": "2026-05-12"
@@ -1347,7 +1347,7 @@
       "D": "Batch workloads"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. Auto Loader is built on Spark Structured Streaming — its primary mode is **streaming** ingestion of newly arriving files. (Note: D isn't strictly false — Auto Loader can be run in a batch-style mode using `trigger(availableNow=True)`, which processes all available files and stops — but it's still a streaming query under the hood.) B (ML) and C (serverless) are unrelated framings. [Community vote] A: 6, D: 1 — the D minority is acknowledging the `availableNow` batch use case.",
     "source": "examtopics",
     "id": "e2c10082-4561-4a7a-969f-c99d54515874",
     "created_at": "2026-05-12"
@@ -1364,7 +1364,7 @@
       "D": "Silver tables contain less data than Bronze tables. "
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. In the medallion architecture, Silver is Bronze that has been cleaned, deduplicated, and filtered, so it typically contains **less data** than Bronze. A is the reverse of the medallion definition — Silver is *more* refined than Bronze. B is wrong — Silver is row-level, not aggregated (that's Gold). C contradicts D. [Community vote] D: 10, A: 2. Caveat: \"always\" is a strong word — if Silver is enriched via joins it could grow, but among the choices D is the only defensible answer.",
     "source": "examtopics",
     "id": "f7d5557b-74b7-4ca9-b0ff-e0868a75e21b",
     "created_at": "2026-05-12"
@@ -1381,7 +1381,7 @@
       "D": "They can use clusters that are from a cluster pool "
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. A **cluster pool** holds idle, pre-warmed VM instances; jobs that draw from the pool skip the multi-minute cloud-VM provisioning step. A (SQL endpoints) is for SQL queries, not multi-task job clusters. B (jobs vs all-purpose) doesn't change startup time — both still cold-start. C (autoscale) is about runtime scaling, not startup. [Community vote] D: 6.",
     "source": "examtopics",
     "id": "e9dbcd55-5c89-4a15-b9d5-3ff0c43b1eba",
     "created_at": "2026-05-12"
@@ -1398,7 +1398,7 @@
       "D": "They can turn on the Serverless feature for the SQL endpoint."
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. The bottleneck is **concurrency** (many small queries at once), which is addressed by letting the warehouse scale **horizontally** — increasing the max scaling range adds more clusters to handle concurrent queries. A (size) is vertical scale, which helps large queries, not concurrent small ones. C (Auto Stop) reduces idle cost, not active latency. D (Serverless) is a valid alternative (faster startup, better concurrency) and is the strongest distractor, but for a fixed always-on endpoint the direct fix is raising the scaling cap. [Community vote] B: 12, D: 2.",
     "source": "examtopics",
     "id": "94d949a1-5702-4192-b593-68ca85638f38",
     "created_at": "2026-05-12"
@@ -1415,7 +1415,7 @@
       "D": "Utilizing Delta Sharing for internal data analytics within a single cloud environment"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. Cross-cloud and cross-region data transfers incur egress fees from the source cloud — Delta Sharing doesn't change cloud pricing; it just provides the protocol. A, C, and D all describe same-cloud/same-region scenarios where no egress fees apply. [Community vote] B: 1.",
     "source": "examtopics",
     "id": "2db2830b-4482-4e09-98fe-7a3b1ed87403",
     "created_at": "2026-05-12"
@@ -1432,7 +1432,7 @@
       "D": "addNewColumns"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. Auto Loader's schema-evolution mode `failOnNewColumns` causes the stream to fail immediately when a previously unseen column appears, so a human can verify the change before resuming. B (`none`) just ignores new columns (data lost). C (`rescue`) puts the unexpected data in a `_rescued_data` column and continues. D (`addNewColumns`) is the default — it adds the column and continues. [Community vote] A: 1.",
     "source": "examtopics",
     "id": "fc09a293-7ef8-473d-ab30-7693c9b22e88",
     "created_at": "2026-05-12"
@@ -1449,7 +1449,7 @@
       "D": "INSERT INTO employees (id, name) VALUES (1 'Alice');"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. The question asks specifically for the DDL operation that **creates** a table — `CREATE TABLE` is the only one that does. B (DROP) and C (ALTER) are also DDL but don't create. D (INSERT) is DML and also has a syntax error (missing comma before `'Alice'`). [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "0c958b01-6b65-4450-b961-6a355a385654",
     "created_at": "2026-05-12"
@@ -1466,7 +1466,7 @@
       "D": "Notebook version control"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. Once the notebook code is ready, you organise it into **tasks** in a Databricks Job and **schedule** it — that's exactly the \"structured process that runs regularly\" the scenario describes. A (real-time streaming) doesn't match a batch ETL scenario. B (collaboration) is helpful during development but not for orchestration. D (version control) is for code management, not scheduling. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "44c34901-1110-41d9-83b3-7f05045d6ba8",
     "created_at": "2026-05-12"
@@ -1483,7 +1483,7 @@
       "D": "Databricks Software Development Kit"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. **Databricks Asset Bundles (DABs)** are the recommended way to package code, jobs, configs, and tests into a single version-controlled bundle that can be deployed to multiple environments — and they integrate with external schedulers via the CLI. A (Databricks Connect) is for running local code against a remote cluster. C (CLI) is a transport layer used *by* bundles but isn't the packaging format itself. D (SDK) is a programmatic API, not a deployment artifact. [Community vote] B: 4.",
     "source": "examtopics",
     "id": "505ae0a1-e50d-4ce0-9612-4fa0ffb39bf9",
     "created_at": "2026-05-12"
@@ -1500,7 +1500,7 @@
       "D": "resources { jobs { name = \"hello-job\" tasks{ task_key = \"hello-task\" existing_cluster_id = \"1234-567890-abcde123\" notebook_task{ notebook_path = \".hello.py\" } } } }"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. Databricks Asset Bundle config files are **YAML** — `resources:`, `jobs:`, `tasks:` with two-space indentation and `key: value` pairs (option A). B is malformed JSON (missing quotes / commas). C wraps a JSON-like object in a Python-style `configuration =` assignment, which isn't a valid DAB format. D uses HCL/Terraform-style block syntax, which DABs do not use. [Community vote] A: 5.",
     "source": "examtopics",
     "id": "1bc41fb1-3b26-4de0-ac3b-afadb3139b11",
     "created_at": "2026-05-12"
@@ -1517,7 +1517,7 @@
       "D": "Expectations"
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. DLT Expectations let you declare constraints such as `CONSTRAINT ... EXPECT (...) ON VIOLATION DROP ROW`, which drop violating records and log a metric to the event log without failing the pipeline — exactly the stated requirement. A (Change Data Capture) handles inserts/updates/deletes from a source, not bad-data filtering. B (\"Error Handling\") and C (\"Monitoring\") are not named DLT features in this sense.",
     "source": "examtopics",
     "id": "091b3f6e-59e6-4c26-aa6e-097c0d34b974",
     "created_at": "2026-05-12"
@@ -1534,7 +1534,7 @@
       "D": "Increase the executor memory for the job."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. **Repartitioning** the dataset redistributes rows evenly across nodes (e.g. by a high-cardinality key), which is the standard fix for skew + underutilisation — idle executors get work. A (coalesce) only *reduces* partition count and cannot fix skew (it merges existing partitions without redistribution). B (more executors) just adds more idle workers if the skew keeps work concentrated on a few. D (more memory) doesn't redistribute work. [Community vote] C: 2.",
     "source": "examtopics",
     "id": "d8b23b22-47bb-4a1a-94b0-0e5e91057f3d",
     "created_at": "2026-05-12"
@@ -1551,7 +1551,7 @@
       "D": "Data lake"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. **Delta Lake** is the storage layer that adds ACID transactions, schema enforcement, time travel, and `OPTIMIZE` to plain Parquet files. B (Unity Catalog) is the governance/metadata layer — it doesn't itself enforce ACID. C (Cloud File Storage) is the raw object store underneath. D (Data lake) is the unstructured concept that *lacks* ACID, which is exactly the problem Delta solves. [Community vote] A: 2.",
     "source": "examtopics",
     "id": "695811d4-7763-453b-87a7-3dbee72ab25e",
     "created_at": "2026-05-12"
@@ -1568,7 +1568,7 @@
       "D": "Aggregate data from multiple sources"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. The **Bronze** layer is meant to capture raw source data with minimal change — only operational/audit columns like **load timestamp** and **process ID** are typically added. B (business rules) belongs to Gold or Silver. C (extensive cleansing) belongs to Silver. D (aggregations across sources) belongs to Gold. [Community vote] A: 1.",
     "source": "examtopics",
     "id": "e5afd3e9-fe63-4e6d-8293-d215336bec86",
     "created_at": "2026-05-12"
@@ -1585,7 +1585,7 @@
       "D": "Databricks Connect"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. **Lakehouse Federation** registers external systems (MySQL, Redshift, BigQuery, etc.) as foreign catalogs in Unity Catalog, so you can query them in place with unified governance and no ingestion. A (Delta Lake) is a storage format on Databricks-managed data. C (MLflow) is for ML lifecycle. D (Databricks Connect) lets you run code locally against a Databricks cluster — it doesn't federate external sources. [Community vote] B: 2.",
     "source": "examtopics",
     "id": "bf1614ca-22fc-478f-abd2-dfe62778667e",
     "created_at": "2026-05-12"
@@ -1602,7 +1602,7 @@
       "D": "Databricks-to-Databricks Sharing"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. **Delta Sharing with the open sharing protocol** lets the partner consume the dataset using any tool that implements the open Delta Sharing client (pandas, Spark, BI tools, etc.) — no Databricks account required, with token-based access control. B (CSV email) is insecure and loses Delta features. C (third-party API) is undefined and bypasses governance. D (Databricks-to-Databricks Sharing) requires the partner to also be on Databricks, which the scenario excludes. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "e8b68e7c-4603-4363-aba2-b655a2c43d80",
     "created_at": "2026-05-12"
@@ -1619,7 +1619,7 @@
       "D": "Supports only batch processing, no data versioning, and high infrastructure costs"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. DLT's defining features — declarative table definitions, automatic data-quality checks via expectations, and built-in schema evolution — match the scenario point-for-point. B, C, and D each list features that are the *opposite* of DLT's actual capabilities (manual schema, no streaming, no versioning), so they're clearly distractors. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "6c73b928-a004-4888-a255-ff2220283568",
     "created_at": "2026-05-12"
@@ -1636,7 +1636,7 @@
       "D": "Databricks supports language interoperability but only if a special character is used."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. A Databricks notebook cell runs in exactly one language at a time — you can't mix Python and SQL inline within the same cell (you have to use a magic command like `%sql` to switch the *whole* cell, or use `spark.sql(\"...\")` from Python). A is wrong (no Scala/SQL pairing exists). B is wrong (notebooks can hold mixed-language cells). D is wrong (no special character enables mid-cell language switching). [Community vote] C: 1.",
     "source": "examtopics",
     "id": "b0a43452-2a8f-4c43-a116-4fad0c5aaf5b",
     "created_at": "2026-05-12"
@@ -1653,7 +1653,7 @@
       "D": "SQL Warehouse"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. **Serverless compute** starts almost instantly, scales to zero when idle, and is billed only for actual usage — ideal for short-burst, high-frequency ad-hoc Python. B (Job cluster) takes several minutes to start each run, so for high-frequency short workloads the startup overhead dominates the cost and latency. A (All-purpose cluster) stays up between runs but is expensive when idle and not auto-terminating. D (SQL Warehouse) only runs SQL, not Python.\n\n[Community vote] C: 8 (top, matches stated), B: 6. The B votes are reasonable for occasional production-style jobs but miss the \"high frequency / wind down quickly\" cue, which is the hallmark of serverless.",
     "source": "examtopics",
     "id": "855102c7-3273-40b0-a449-1bf65397bf9e",
     "created_at": "2026-05-12"
@@ -1670,7 +1670,7 @@
       "D": "By providing a local environment that mimics the Databricks runtime, enabling the engineer to develop, test, and debug code using their preferred IDE"
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. Databricks Connect lets you point your **preferred IDE** (VS Code, PyCharm, etc.) at a remote Databricks cluster — Spark code written locally is executed on the cluster while you debug locally. A is wrong because no specific IDE is mandated. B is wrong (the whole point is *not* using the web UI). C is wrong (the cluster is remote, so a network connection is required). [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "f56b0038-9543-4a10-981b-2242943de527",
     "created_at": "2026-05-12"
@@ -1687,7 +1687,7 @@
       "D": "Raw layer"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. Raw Kafka events should land in the **Bronze** layer — that's the medallion layer for unmodified historical capture. Storing raw events in Silver or Gold defeats the medallion separation (and Silver/Gold would have aggregated/transformed data, losing the original event payload). \"Raw layer\" (D) is not part of the medallion taxonomy — Bronze *is* the raw layer in this naming. [Community vote] C: 1.",
     "source": "examtopics",
     "id": "f4ab6ea5-0d9e-4dd7-a966-fbb726be653c",
     "created_at": "2026-05-12"
@@ -1704,7 +1704,7 @@
       "D": "15MBs"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. A notebook task on a Databricks job cluster will fail if its total output exceeds **30 MB** (the documented `notebookOutputTooLarge` limit). A, B, D give the wrong numeric limit. [Community vote] C: 5, B: 1. (Note: the documented limit has shifted over time — exam-question-version sensitive — but 30 MB is the canonical examtopics answer.)",
     "source": "examtopics",
     "id": "e9b9d0e3-b13b-4e61-8c57-dfb786cd8d96",
     "created_at": "2026-05-12"
@@ -1721,7 +1721,7 @@
       "D": "Use DESCRIBE HISTORY table to check if exists any OPTIMIZE operation"
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. `DESCRIBE HISTORY <table>` lists every operation written to the Delta transaction log, including `OPTIMIZE` runs — you can see when (and whether) it was executed. A (predictive_optimization_operations_history) only records *predictive* optimization performed by Databricks, not explicit user-issued OPTIMIZE. B (`SHOW TABLES EXTENDED`) shows partition info, not operation history. C (`DESCRIBE DETAIL`) shows current file stats but doesn't tell you whether OPTIMIZE was run. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "bf4655f2-c1f1-474e-b883-3782e725adff",
     "created_at": "2026-05-12"
@@ -1738,7 +1738,7 @@
       "D": "In Databricks, audit logs output events in a plain text format."
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. Databricks delivers audit logs as **JSON** files to the configured cloud storage location — JSON is the structured, queryable format the docs specify. CSV, XML, and plain text are not the delivered formats. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "bd46ce0f-8306-4f14-b706-7aad1f6d653f",
     "created_at": "2026-05-12"
@@ -1755,7 +1755,7 @@
       "D": "Job cluster with Photon enabled"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. For a small, predictable production batch, a **Job cluster with spot instances** gives the lowest cost — spot/preemptible VMs are heavily discounted and the small simple workload tolerates the (low) risk of an interruption. A (interactive/all-purpose) is more expensive and meant for development. C (job cluster without spot) pays full on-demand price. D (Photon) is for compute-heavy workloads (wide transforms, big aggregations) — wasted here since the workload is simple. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "7f4c6221-8168-4a66-b7f5-bce56f89f8cd",
     "created_at": "2026-05-12"
@@ -1772,7 +1772,7 @@
       "D": "df = spark.readStream.format(\"cloudFiles\").option(\"cloudFiles.format\", \"json\").load(\"/input/path\")"
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. Auto Loader is invoked via `spark.readStream.format(\"cloudFiles\").option(\"cloudFiles.format\", \"json\").load(...)` — `cloudFiles` is the streaming source, and `cloudFiles.format` tells it the input file type. A is a one-shot batch read, not file-arrival-triggered. B uses an invented format name `\"cloud\"`. C is syntactically broken (missing closing paren) and uses the plain JSON streaming source, not Auto Loader. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "f9c5925c-5c89-4290-a88b-16dfb3a52f2f",
     "created_at": "2026-05-12"
@@ -1789,7 +1789,7 @@
       "D": "Gold Layer - Deduplicated money transfer transaction"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. **Silver = Cleansed master customer data** matches the medallion pattern: Silver holds cleaned, conformed, deduplicated row-level data. A puts raw application data in Silver (wrong — that's Bronze). B puts an aggregated summary in Bronze (wrong — Bronze is raw). D puts deduplicated transactions in Gold (deduplication is a Silver-layer activity; Gold is for business-aggregated views). [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "62c390e5-0001-4816-8037-ea664357c25e",
     "created_at": "2026-05-12"
@@ -1806,7 +1806,7 @@
       "D": "Unity Catalog provides an interactive graph that visualizes the dependencies between Delta tables, notebooks, jobs, and dashboards, while also supporting column-level tracking of data transformations. "
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. Unity Catalog lineage produces an interactive graph spanning **tables, notebooks, jobs, dashboards, AND queries**, with **column-level** tracing of which upstream column produced each downstream column. A, B, and C all understate the coverage (omit column-level, dashboards, or jobs). [Community vote] D: 3.",
     "source": "examtopics",
     "id": "f932abb4-97ae-401e-bf95-092e13f3fe96",
     "created_at": "2026-05-12"
@@ -1823,7 +1823,7 @@
       "D": "All-purpose compute cluster"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. **Pro SQL Warehouse** is the right fit here: it supports custom VPC/private-networking configurations (which Serverless doesn't fully on every cloud) AND offers Photon-based fast queries with concurrency scaling. B (Serverless) is fastest/cheapest in general but the scenario specifies a custom-defined network in the cloud, which historically Pro supports more flexibly. A (Classic) is slower than Pro. D (all-purpose cluster) is for code, not the SQL-warehouse queries described. [Community vote] C: 5.",
     "source": "examtopics",
     "id": "fe975ca7-8c51-4dec-a7fd-113bccae8139",
     "created_at": "2026-05-12"
@@ -1840,7 +1840,7 @@
       "D": "USE catalog/schema privilege on the schema "
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. In Unity Catalog, the **owner** of an object can grant and revoke privileges on that object, but does *not* automatically have data privileges (SELECT/MODIFY) — those must be granted explicitly. A Schema Owner can therefore manage permissions on the schema and the objects inside it without having read/write access. A (Table Owner) is scoped too narrowly (one table, not the schema). B (Catalog Owner) is too broad. D (USE catalog/schema) only allows traversal — it does not grant the right to GRANT/REVOKE.\n\n[Community vote] C: 3 (matches stated), D: 2 — note examtopics flagged D as \"most voted\" on the page, but the actual vote count puts C ahead. The D minority confuses traversal privilege (USE) with management privilege (ownership). Also worth knowing: this question relies on the UC behaviour that ownership ≠ automatic data access, which differs from the legacy hive_metastore.",
     "source": "examtopics",
     "id": "4f450c82-fee9-4d08-a0a7-897d52a9438e",
     "created_at": "2026-05-12"
@@ -1857,7 +1857,7 @@
       "D": "Use the Spark UI to analyze the execution plan and identify stages where the job failed"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. The **Python Notebook Interactive Debugger** in Databricks lets you set breakpoints and inspect DataFrame contents and variables live — that's the direct fit for the scenario. A (CLI driver logs) shows log lines after the fact. C (Ganglia) is hardware/resource monitoring, not variable inspection. D (Spark UI) shows job/stage/execution plan diagnostics, not Python variable state. [Community vote] B: 2.",
     "source": "examtopics",
     "id": "74ac35db-8ced-4364-a9ce-b14974c3d630",
     "created_at": "2026-05-12"
@@ -1874,7 +1874,7 @@
       "D": "CREATE EXTERNAL TABLE statement without specifying a LOCATION clause."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. `CREATE TABLE <name> ... LOCATION '<path>'` creates an external table at that path. (In Unity Catalog you may use the more explicit `CREATE EXTERNAL TABLE`, but either works — a `CREATE TABLE` with a `LOCATION` becomes external by definition.) A uses `CREATE MANAGED TABLE`, which is the opposite. B uses `CREATE UNMANAGED TABLE` (not standard syntax) and omits LOCATION. D omits LOCATION, which an external table requires. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "379275db-3318-4d4b-a142-029807abd1fe",
     "created_at": "2026-05-12"
@@ -1891,7 +1891,7 @@
       "D": "All-Purpose Cluster with a large fixed memory size"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. A proof-of-concept needs an **All-Purpose Cluster** (it supports interactive development and re-running cells with real-time results), and **autoscaling** keeps cost down when the workload spikes only briefly. B and C use Job clusters, which are not interactive — every notebook re-run would spin up a new cluster, killing iteration speed. D fixes the memory size, defeating cost control during the idle periods. [Community vote] A: 2.",
     "source": "examtopics",
     "id": "4870e678-3bc4-4731-b84f-c8b9c0f25651",
     "created_at": "2026-05-12"
@@ -1908,7 +1908,7 @@
       "D": "Serverless SQL Warehouse"
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. **Serverless SQL Warehouse** provides instant startup, auto-scaling based on query volume, and billing only for the seconds the queries actually run — no infra to provision or manage. A (Databricks SQL Analytics) is the product family name, not a specific compute option. B (Runtime for ML) is for ML notebooks, not SQL. C (Databricks Jobs) is a scheduler, not a compute type. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "14ee3332-fdec-4d41-a01b-af10bf8664e0",
     "created_at": "2026-05-12"
@@ -1925,7 +1925,7 @@
       "D": "Auto Loader automatically ingests and processes new files from cloud storage, handling batch data with support for schema evolution."
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. Auto Loader ingests new files from cloud storage incrementally; it supports **both streaming and batch** (via `trigger(availableNow=True)` for batch-style runs), and it includes **schema evolution** (e.g. `addNewColumns`, `rescue`). B and C omit schema evolution. C also wrongly says streaming-only. D wrongly says batch-only. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "b74f8fc5-4de5-4135-a41b-d3b32616e1c7",
     "created_at": "2026-05-12"
@@ -1942,7 +1942,7 @@
       "D": "Share the dataset using Delta Sharing, which allows your partner to access the data using a secure, read-only URL without requiring a Databricks account, ensuring that they cannot modify the data."
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. **Delta Sharing** (open protocol) is exactly designed for this scenario: the partner gets a secure, token-protected URL to read the Delta data with no Databricks account, and the share grants read-only access by default. A (CSV transfer) is insecure and breaks Delta. B and C both grant write permissions, violating \"read-only.\" [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "90b1226f-8176-466a-a0f7-a74a6d6f3be1",
     "created_at": "2026-05-12"
@@ -1959,7 +1959,7 @@
       "D": "It triggers a full liquid clustering process."
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. `OPTIMIZE` is **idempotent**: once the table's small files have been compacted into the target file size, a second run finds nothing to compact and is essentially a no-op (it still scans the file list, but no rewrites happen). B is wrong because tuples-per-file doesn't change significantly on a second run. C is wrong (no further reduction is possible). D is wrong — OPTIMIZE doesn't trigger a full liquid clustering re-shuffle on a no-op run. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "f36278fc-66d2-4840-a64d-90d02034287e",
     "created_at": "2026-05-12"
@@ -1976,7 +1976,7 @@
       "D": "Their Databricks account password"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. Databricks-to-Databricks Delta Sharing between two Unity Catalog metastores requires you to register the partner as a **Recipient** using the **sharing identifier** of their metastore (you can get yours via `SELECT CURRENT_METASTORE()` and the sharing-identifier function). A (IP address), B (cluster name), and D (account password) are all wrong: not used and the password ask would be a major security red flag. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "b4d82c22-4865-4204-b4eb-58fb7d4484fe",
     "created_at": "2026-05-12"
@@ -1993,7 +1993,7 @@
       "D": "Switch to another cluster"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. **Repair run** re-runs only the failed task(s) and any of their downstream dependents, reusing the already-successful upstream task outputs — minimum cost and time. A re-runs everything (wasteful). C and D address cluster state but don't re-execute the failed task at all. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "773d7de5-e323-4c4f-90d3-8a773a013b31",
     "created_at": "2026-05-12"
@@ -2010,7 +2010,7 @@
       "D": "Use Serverless compute in Databricks to automatically scale and provision resources with minimal manual intervention."
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. **Serverless compute** is Databricks-managed: it auto-scales instantly to match workload, handles HA and resource allocation without operator intervention, and aligns naturally with strict SLAs. A (fixed Job Clusters, no autoscale) violates the autoscaling requirement. B (spot/preemptible) introduces interruptions that undermine SLAs. C (interactive clusters with manual sizing) requires the manual cluster management the scenario explicitly rules out. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "13420b26-f6c2-4db7-a6c1-f138adad7158",
     "created_at": "2026-05-12"
@@ -2027,7 +2027,7 @@
       "D": "Switch the cluster"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. For a single-task workflow there's nothing else upstream to repair — just re-run the workflow (the fix is already in the notebook). \"Repair task\" (A) is the feature for *multi-task* jobs where you want to skip already-successful tasks; for one task there's no benefit over a plain rerun. C/D (cluster restart/switch) don't re-execute the failed notebook. [Community vote] B: 7, A: 3. The A voters are thinking of the multi-task case; here Repair would still work but is overkill.",
     "source": "examtopics",
     "id": "bf49057b-b704-4bef-aa3a-80122bc64502",
     "created_at": "2026-05-12"
@@ -2044,7 +2044,7 @@
       "D": "GRANT CREATE TABLE ON SCHEMA manufacturing.quality TO manufacturing-team; GRANT CREATE SCHEMA ON SCHEMA manufacturing.quality TO manufacturing-team; GRANT USE CATALOG ON CATALOG manufacturing TO manufacturing-team;"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. To create tables in a Unity Catalog schema with least privilege you need exactly: `USE CATALOG` on the parent catalog, `USE SCHEMA` on the schema, and `CREATE TABLE` on the schema — which is what A grants. B uses `USE TABLE`, which is not a valid Unity Catalog privilege. C and D add `CREATE SCHEMA` (only needed to create new schemas, not new tables); C additionally grants `CREATE CATALOG`, which is far over-privileged. (Note: the question text mentions schema `quality` in the prompt and `production` in the stem — all the answer options actually use `manufacturing.quality`, so the stem typo doesn't change the correct choice.)",
     "source": "examtopics",
     "id": "04fe900f-8bfb-4354-be25-60a0bd660cbd",
     "created_at": "2026-05-12"
@@ -2061,7 +2061,7 @@
       "D": "High CPU time vs Task time means over-utilized memory and the need to increase parallelism"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. In Spark UI, **CPU time > task time** means the executor's CPUs are pegged but the task barely makes progress — i.e. CPU-bound, *over-utilised* — so you need more compute (bigger cluster, more cores per executor, or executor tuning). A inverts the diagnosis (high CPU time isn't \"underutilised\"). B is wrong — high CPU/task ratio is a bottleneck, not efficiency. D talks about memory and parallelism, neither of which is the direct symptom here. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "5a595ee2-296f-47cb-b986-bdd174f99cb2",
     "created_at": "2026-05-12"
@@ -2078,7 +2078,7 @@
       "D": "df = spark.readstream.format(\"cloudFiles\") \\ .option(\"cloudFiles.format\", \"binaryFile\") \\ .load(\"/*.png\")"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. Auto Loader for binary files uses `.option(\"pathGlobfilter\", \"*.png\")` to filter on extension and `.load()` (no path argument needed, or just the base directory). A and C use a fictitious `.append()` method. D omits the pathGlobfilter, falling back to interpreting the glob as a path, which won't reliably match the directory contents the same way. [Community vote] B: 5, D: 1.",
     "source": "examtopics",
     "id": "821c2f8c-d48a-4f56-a611-226186180390",
     "created_at": "2026-05-12"
@@ -2095,7 +2095,7 @@
       "D": "Aggregate and transform source data to calculate daily sales performance metrics."
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. The **Bronze** layer in medallion captures raw data with original schema preserved, persisted in Delta for ACID guarantees but **without transformations**. B (cleaning) is a Silver concern. C (business logic / enrichment) is Gold (or upper Silver). D (aggregations) is Gold. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "7fa695d5-92e3-4963-b08c-dffc8fa008c3",
     "created_at": "2026-05-12"
@@ -2112,7 +2112,7 @@
       "D": "Ingest raw data in its original state"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. The **Silver** layer's job is to **validate, clean, and deduplicate** raw Bronze data into conformed, query-ready row-level tables. A (audit-only) is not the layer's purpose. B (aggregate/enrich) describes Gold. D (raw ingest) describes Bronze. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "a09be355-96b5-4386-a008-884de31c0470",
     "created_at": "2026-05-12"
@@ -2129,7 +2129,7 @@
       "D": "Develop custom ETL pipelines to ingest data into Databricks"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. **Lakehouse Federation** lets you register the on-prem Postgres and Azure Synapse as foreign catalogs in Unity Catalog and query both in place — no copies, always up-to-date. A (CSV export) breaks freshness and is one-shot. C (manual sync) is laborious and error-prone. D (custom ETL) duplicates data, exactly what the scenario wants to avoid. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "2c2d9eb4-4fe6-435d-b27f-2875726b1684",
     "created_at": "2026-05-12"
@@ -2146,7 +2146,7 @@
       "D": "SQL Analytics"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. The **Python Notebook Interactive Debugger** lets you set breakpoints, step through code, and inspect variable values live during execution — perfect for the described scenario. A (cluster logs) is post-hoc. B (job dashboard) is for orchestration, not variable inspection. D (SQL Analytics) is a query product, not a debugger. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "9cb1bb34-a4d1-4b89-8561-0689e5c51f3e",
     "created_at": "2026-05-12"
@@ -2163,7 +2163,7 @@
       "D": "Ensure the cluster uses memory optimized node types."
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. The symptom is **memory spills** during shuffles — the canonical first fix is to tune `spark.sql.shuffle.partitions` (default 200 is often too low for big jobs, causing each partition to be too large for executor memory). B (autoscaling) won't fix per-partition size. C (Photon) helps compute speed but doesn't fix shuffle partition sizing. D (memory-optimised nodes) increases cost, not the cheapest first move. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "b4171cfd-0f87-400f-bf3c-36374ea62b06",
     "created_at": "2026-05-12"
@@ -2180,7 +2180,7 @@
       "D": "Switch the Data layout from Partition+Z-Ordering to Automatic Liquid Clustering. "
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. **Liquid Clustering** is designed for changing query patterns: clustering keys can be modified later without rewriting the whole table, unlike static partitioning + Z-order. Switching the layout from partition+Z-order to Liquid Clustering fixes the \"frequently changing filter\" problem. A keeps Z-order alongside Liquid Clustering (mixing layouts isn't recommended; Liquid replaces them). B (Delta caching) accelerates re-reads but doesn't fix data layout. C (re-tuning Z-order) is just more of what's already failing. [Community vote] D: 1.",
     "source": "examtopics",
     "id": "a01fe90a-0d4c-4132-8a07-91e49da184db",
     "created_at": "2026-05-12"
@@ -2197,7 +2197,7 @@
       "D": "Enable delta caching on the cluster so that frequent reads are cached for performance."
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. Cluster the table by **both** `customer_id` (the high-cardinality filter) and `purchase_date` (the time dimension still used in range filters). Liquid Clustering co-locates data along multiple keys, so queries on either filter benefit. A keeps partition+liquid clustering mixed, which Databricks recommends against (use one layout strategy). C (partition by high-cardinality customer_id) is a classic anti-pattern — it generates millions of tiny partitions. D (Delta caching) only helps re-reads of the same files, not first reads. [Community vote] B: 1, A: 1.",
     "source": "examtopics",
     "id": "f26b5642-f1e7-4e52-b8b1-8af82bdbf28a",
     "created_at": "2026-05-12"
@@ -2214,7 +2214,7 @@
       "D": "A YAML configuration file that specifies the artifacts, resources, and configurations for the project"
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. A Databricks Asset Bundle is built around a **YAML configuration file** (`databricks.yml`) that declares artifacts, resources (jobs, pipelines, models), targets (dev/prod), and workspace settings. A (Docker image) is wrong — bundles aren't Docker artifacts. B (plain ZIP) ignores the required config. C (text list of names) isn't the format. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "5cc20aa1-028d-41ac-9604-8422c9a853dd",
     "created_at": "2026-05-12"
@@ -2231,7 +2231,7 @@
       "D": "Manually create and manage the workflow in UI"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. **Databricks Asset Bundles + GitHub integration** is the recommended path: the bundle is version-controlled in GitHub and a CI workflow runs `databricks bundle deploy` per environment. B (hand-rolled `workflow_config.json` + CLI) is not a standard format. C (Terraform) is possible but heavier — DABs are the first-class Databricks way. D (manual UI) defies version control. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "55b154d2-07db-47b5-9baa-0792f006c6f6",
     "created_at": "2026-05-12"
@@ -2248,7 +2248,7 @@
       "D": "Utilize Databricks serverless compute that automatically optimizes resources and abstracts cluster management."
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. Databricks serverless compute fully abstracts cluster management, auto-scales, auto-applies Photon, and handles runtime upgrades — directly meeting \"minimal runtime errors\" and \"no cluster management overhead.\" A still requires the user to configure and monitor the cluster. B and C explicitly add operational overhead (custom VMs, manual tuning), which is what the question rules out.",
     "source": "examtopics",
     "id": "0a14b87f-ce85-42fe-903b-08ef5d6d2ae2",
     "created_at": "2026-05-12"
@@ -2265,7 +2265,7 @@
       "D": "Low frequency BI Dashboarding and Adhoc SQL Analytics"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. A **frequently running, efficient Python pipeline already compatible with the latest runtime and UC** is the lowest-risk first migration — it's the natural fit for serverless: short-burst, frequent runs benefit most from instant scaling and per-second billing. A (legacy ingestion with JDBC/ODBC) has connectivity and library constraints on serverless. C (Scala) is not supported on serverless compute (Python/SQL only). D (low-frequency BI) might use SQL Warehouse Serverless but isn't a typical migration target for a Python pipeline scenario. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "d3ee67ed-308f-4fea-b88b-ccfe8370718f",
     "created_at": "2026-05-12"
@@ -2282,7 +2282,7 @@
       "D": "Databricks SQL Serverless"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. A **Job Cluster** is the cost-efficient default for scheduled batch ETL: it spins up at job start, scales with autoscaling, and terminates at job end (no idle billing). B (\"dedicated cluster\") isn't a standard Databricks term and implies always-on. C (all-purpose) is more expensive and intended for interactive use. D (SQL Serverless) is for SQL workloads, not Python/Scala ETL. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "dea9eca5-96cd-4e4c-92ba-e6fb51e64768",
     "created_at": "2026-05-12"
@@ -2299,7 +2299,7 @@
       "D": "Grant READ permissions to external partners and READ/WRITE permissions to internal teams through the Delta Share."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. In Delta Sharing you create a Share, add the tables/views, and then assign the appropriate privileges per recipient — **READ** for external partners (Delta Sharing only supports read-only sharing) and **READ/WRITE** for internal teams (typically by granting them access at the Unity Catalog level on the source tables, not via the share). A (single URL for all) ignores per-recipient permissions. B and D wrongly imply Delta Sharing can grant WRITE to external recipients — it cannot. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "17af960f-c333-41e7-81da-64378791d158",
     "created_at": "2026-05-12"
@@ -2316,7 +2316,7 @@
       "D": "Use Unity Catalog to manage access controls and permissions for each external table individually."
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. Unity Catalog provides fine-grained, per-table access control (GRANT/REVOKE on individual external tables, plus least-privilege via USE CATALOG / USE SCHEMA) and works uniformly across managed and external tables. A grants access at the storage container level — far too coarse, and bypasses Databricks governance. B violates least privilege. C is wrong: workspace-level membership does not automatically grant permissions on UC securables.",
     "source": "examtopics",
     "id": "0aa636d9-5542-4dda-9da0-6fba9a863fca",
     "created_at": "2026-05-12"
@@ -2333,7 +2333,7 @@
       "D": "Sharing data via pre-signed URLs without monitoring egress costs"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C (stated). Delta Sharing is Databricks' open protocol for sharing tables across clouds and organizations; using it avoids the need to copy data, which is the most common driver of egress charges. B (VPN) doesn't change egress pricing — cross-cloud bytes still cost the same. D (pre-signed URLs without monitoring) explicitly ignores the cost question. A (Cloudflare R2) would also reduce egress (R2 has zero egress fees) but it requires migrating the dataset off Databricks' managed storage, which is a bigger architectural change than the question implies.\n\n[Community note / disagreement flag] **The stated answer is questionable.** Vanilla Delta Sharing does not, on its own, eliminate cross-cloud egress — when the Azure partner reads from S3, AWS still bills egress. To truly minimize egress, Databricks recommends backing Delta Sharing with **Cloudflare R2** (zero egress) — which is option A. The single community vote on this question went to A for that reason. If the exam is testing the literal \"egress reduction\" mechanic, A is arguably more correct; if it's testing \"which sharing approach should you use,\" C is the expected answer. Worth verifying against current Databricks documentation.",
     "source": "examtopics",
     "id": "0fa095b9-e48f-473c-8ac5-bda80add29c9",
     "created_at": "2026-05-12"
@@ -2350,7 +2350,7 @@
       "D": "INSERT"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. **SELECT** is the privilege for read-only querying — exactly the analyst scenario. A (ALL PRIVILEGES) includes modify rights. B (MODIFY) allows updates/deletes. D (INSERT) allows writes. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "38c774d2-7bbd-455a-baed-5c734a3b3a1e",
     "created_at": "2026-05-12"
@@ -2367,7 +2367,7 @@
       "D": "Do not use the lineage feature as it only tracks activity from the last 3 months and will not provide full details on dependencies."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. Unity Catalog's **lineage** view shows a graph of all downstream and upstream dependencies — including notebooks, jobs, queries, dashboards, and other tables — with column-level granularity. A and B understate coverage (only reports, only notebooks). D is wrong on both counts: lineage covers more than the last 3 months for events captured, and it provides full dependency details. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "a8317e42-3f58-498f-b329-28ed272ead08",
     "created_at": "2026-05-12"
@@ -2384,7 +2384,7 @@
       "D": "Share access to codebase via Github and allow them to ingest datasets from your Datalake."
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. **Delta Sharing** for the data + UC permissions for governance is the right answer for cross-organisation sharing. A (zip + email) is insecure and ignores governance. C is incomplete — Unity Catalog alone doesn't share with another organisation; you need Delta Sharing. D (Github + ingest from your data lake) leaks raw data access and skips governance. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "6d1efd71-4bb2-4d4c-92dc-9289ec2604d8",
     "created_at": "2026-05-12"
@@ -2401,7 +2401,7 @@
       "D": "Verify that the local Spark version equals the serverless Spark version to satisfy Spark Connect parity."
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. Databricks Connect for serverless requires (1) **Unity Catalog enabled** on the workspace and (2) a **Databricks Connect client version that matches the serverless Runtime version**. A is wrong on both counts (UC must be enabled, and the client version should *match*, not be less than, the Runtime). C is false — Databricks Connect *does* support serverless. D is overstated; full Spark-version parity isn't the requirement — Connect/Runtime compatibility matrix is. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "200a0072-b30b-4a3d-8b17-26c6641a5ac6",
     "created_at": "2026-05-12"
@@ -2418,7 +2418,7 @@
       "D": "Build “customer_transactions” in Silver and put the aggregated, report-ready tables in Gold."
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. The conformed customer_transactions view (joined, cleaned, schema-enforced row-level data) belongs in **Silver**; the highly aggregated, domain-specific report tables belong in **Gold**. A puts both in Silver, breaking the medallion separation. B puts the conformed view in Bronze (wrong — Bronze is raw). C inverts Silver and Gold. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "5ad6b5ea-32a4-4d9a-ba10-77f9c4a4b4ad",
     "created_at": "2026-05-12"
@@ -2435,7 +2435,7 @@
       "D": "Cloud objects storage only, with ad hoc SQL queries for recovery and governance."
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. **Delta Lake's ACID + time travel** gives reliable rollback, schema enforcement, and audit history; **Unity Catalog** layers governance, access control, and lineage on top. The combo covers every requirement in the scenario. B (CSV + manual versioning) loses ACID. C (in-memory DataFrames) has no persistence/audit trail. D (raw cloud storage + ad-hoc SQL) lacks ACID, governance, and audit. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "7a8a8283-8e91-4ff8-ac6d-1c9e8ab6f26d",
     "created_at": "2026-05-12"
@@ -2452,7 +2452,7 @@
       "D": "Land both sources directly into the Silver layer with schema enforcement and deduplication to reduce downstream complexity."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. The medallion principle is to **land all raw data in Bronze append-only** and do cleaning/business logic in Silver/Gold — that preserves source fidelity and supports reprocessing. A puts raw data in Gold, defeating layer separation. B splits sources arbitrarily across layers. D skips Bronze entirely (no raw retention, can't reprocess). [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "b2771c05-21ac-4aa9-a445-9d08567b362d",
     "created_at": "2026-05-12"
@@ -2469,7 +2469,7 @@
       "D": "Disable Unity Catalog on the workspace because it conflicts with remote execution through Databricks Connect."
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. For Databricks Connect to register and run **UDFs**, the client's Python minor version must match the cluster's; the Connect package version must be compatible with the cluster's Runtime version (per the published compatibility matrix). B is wrong — for UDFs, Python minor parity is required (UDF serialisation is Python-version-sensitive). C is wrong — Databricks Connect supports both serverless and standard clusters (with access-mode caveats). D is wrong — UC and Databricks Connect work together fine. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "bc334861-e709-43c7-82e6-bd356cff186d",
     "created_at": "2026-05-12"
@@ -2486,7 +2486,7 @@
       "D": "Swap the cluster"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. The action in the Jobs UI is \"Repair run\" — it re-executes failed tasks within the same run, reusing the successful task outputs where possible. After fixing the notebook, Repair run is the documented path. A \"Repair task\" is not a Jobs UI action. C (restarting the cluster) doesn't help — the failure was a code bug, not a cluster state issue. D (swapping the cluster) doesn't address a notebook error either, and would not retry the failed run.",
     "source": "examtopics",
     "id": "2d97b4d6-6936-4642-b5e1-5e3913b7fb2f",
     "created_at": "2026-05-12"
@@ -2503,7 +2503,7 @@
       "D": "Use an all-purpose cluster with cluster policies to enforce standard sizes and enable autoscaling."
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. Serverless compute for workflows is the offering that auto-selects instance types, manages scaling, applies Photon by default, and handles runtime upgrades for job runs — matching every requirement in the prompt. B uses a SQL warehouse, which only runs SQL workloads, not arbitrary job tasks. C and D still require the engineer to manually size clusters and tune autoscaling, which is exactly the operational toil the team wants to remove.",
     "source": "examtopics",
     "id": "0d1a0e09-3635-4b9a-8594-d802da7152f3",
     "created_at": "2026-05-12"
@@ -2520,7 +2520,7 @@
       "D": "Place a databricks.yaml at the repository root and optional databricks.yml in subfolders; the CLI prefers .yaml over .yml when both exist."
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. A Databricks Asset Bundle requires **exactly one** `databricks.yml` at the repo root as the main entry point; it can pull in additional fragments via the `include:` mapping. A is wrong — you can't have multiple top-level `databricks.yml`s. C is wrong — there's no \"hidden folder\" requirement. D is wrong — the filename is `databricks.yml` (not `.yaml`), and no preference rule applies. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "9eb4ef3f-111c-4d2d-af63-06b8fc2945f8",
     "created_at": "2026-05-12"
@@ -2537,7 +2537,7 @@
       "D": "Use the lineage feature to visualize a graph that highlights where the table is used only in notebooks."
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. Unity Catalog **lineage** displays an interactive graph that traces a table's full set of dependencies — upstream and downstream — across notebooks, jobs, queries, dashboards, and other tables (with column-level granularity). B and D understate coverage. C confuses lineage with **audit logs** (audit logs answer \"who did what when,\" not \"what depends on what\"). [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "88262cc6-5416-467e-872c-8e6b2ae8854d",
     "created_at": "2026-05-12"
@@ -2554,7 +2554,7 @@
       "D": "Grant USE SCHEMA on main.marketing and MODIFY on all tables to mkt-admins, which enables managing grants within the schema."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. In Unity Catalog, the **owner** of an object can grant/revoke privileges on it (and inherited objects), without needing to be a workspace admin. Transferring ownership of `main.marketing` to the `mkt-admins` group is the least-privilege way to delegate schema-scoped permission management. A (MANAGE on the metastore) is far too broad — gives global rights. B (workspace admin promotion) bypasses UC's model and grants vast extra privileges. D (USE SCHEMA + MODIFY) grants data access but doesn't grant the ability to manage other users' privileges. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "d64e50f1-11a6-4bb8-a5ba-0dd7f3c8287a",
     "created_at": "2026-05-12"
@@ -2571,7 +2571,7 @@
       "D": "DROP external tables first to delete their files, then DROP managed tables to keep their files for recovery."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. DROP on a **managed** table removes the metadata AND the underlying files (UC controls the lifecycle); DROP on an **external** table only removes the catalog metadata — the files in cloud storage are untouched, which is what the engineer needs for the shared-storage tables. A is wrong — managed-table files *are* deleted. B (7-day soft delete for both) is incorrect. D inverts the behaviour. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "749141a5-ac51-4733-b3af-a0d1abd182d7",
     "created_at": "2026-05-12"
@@ -2588,7 +2588,7 @@
       "D": "Temporary views over files to avoid table-level governance and lifecycle coupling."
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. **Managed** tables let Unity Catalog own the storage layout, apply predictive optimization (auto-OPTIMIZE, auto-VACUUM), and clean up the data when the table is dropped — exactly the scenario. B (external tables) requires you to manage layout and keeps files after drop. C (foreign tables) federates from another catalog and isn't about ingestion. D (temporary views) aren't persistent tables and bypass governance. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "68424d1a-a445-40a6-b296-314e9a1dcb59",
     "created_at": "2026-05-12"
@@ -2605,7 +2605,7 @@
       "D": "Keep all data heavily normalized in Gold to minimize storage and rely on BI tools to join data at query time."
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. The **Gold** layer in medallion is built for BI/analytics consumers: denormalized, domain-aligned tables (one per business concept like `weekly_sales`, `account_performance`) plus materialized aggregates for fast dashboard queries. A puts raw data in Gold (that's Bronze). C keeps business logic in Silver — Silver is for conforming, Gold is for business modelling. D (heavily normalized) is the opposite of dashboard-friendly. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "c34d21fe-d6e8-480a-be59-85ac84419f53",
     "created_at": "2026-05-12"
@@ -2622,7 +2622,7 @@
       "D": "A JSON file named bundle_config.json that stores all resource details and environment variables"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. A Databricks Asset Bundle is defined by a single root-level **`databricks.yml`** containing `bundle`, `targets`, `resources`, `variables`, and `include` sections. A (Python script) isn't the DAB format. C (multiple TXT files per resource) isn't a thing. D (`bundle_config.json`) isn't the recognised filename or format. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "b169d4a1-a3c5-4c30-9766-0f83014690fa",
     "created_at": "2026-05-12"
@@ -2639,7 +2639,7 @@
       "D": "It mirrors the entire cluster environment on the developer's machine"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. Databricks Connect acts as a **proxy**: PySpark code on the local client is serialized and sent to the remote cluster, which executes the actual Spark operations; only action results stream back to the local console. A is wrong — synchronization is automatic. B is wrong — compute runs remotely, not locally. D is wrong — the client doesn't mirror the cluster, it talks to it via Spark Connect. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "8a6e110f-0319-4ee9-ae9e-5d01bbca5c1a",
     "created_at": "2026-05-12"
@@ -2656,7 +2656,7 @@
       "D": "Assign the engineer as Metastore Admin because only Metastore Admins can create external locations."
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. Creating an external location requires `CREATE EXTERNAL LOCATION` on the **metastore** AND on the **referenced storage credential** — that's the least-privilege grant. B (ALL PRIVILEGES on a catalog) doesn't include the metastore-level CREATE EXTERNAL LOCATION. C (workspace admin) is broad and orthogonal — workspace admin is not the same as metastore privilege. D (Metastore Admin) works but violates least privilege. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "3d6b524f-74c2-4d1e-84f2-9712a42ff020",
     "created_at": "2026-05-12"
@@ -2673,7 +2673,7 @@
       "D": "Use 'Run now' to start a new run, so that the updated settings apply; the new run replaces the prior run history."
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. **`POST /jobs/runs/repair`** (or the \"Repair run\" button) re-runs only the failed/skipped tasks, applies the current job and task settings (so the updated cluster size and notebook path are picked up), and appends the repair as a continuation of the original run — preserving lineage. B (retry count + Retry click) re-runs within the same task config and may not apply new cluster settings cleanly. C (export/redeploy as DAB) creates a different deployment artifact, not a repair. D (Run now) creates a new run, losing the link to the prior run history. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "ed8ded81-1188-4bbf-9f92-038382f14f50",
     "created_at": "2026-05-12"
@@ -2690,7 +2690,7 @@
       "D": "WHEN NOT MATCHED THEN DELETE"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. `WHEN NOT MATCHED BY SOURCE THEN DELETE` is the MERGE clause that removes target rows for which there is no corresponding source row — i.e. atomic \"delete what's gone from the source.\" A (`WHEN MATCHED BY SOURCE THEN UPDATE SET NULL`) isn't a valid MERGE clause. B is syntactically broken. D (`WHEN NOT MATCHED THEN DELETE`) means \"source row has no target match\" — but you can't delete a target row that doesn't exist. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "bb05ad0f-148a-4c4f-bce2-9142dbcc70be",
     "created_at": "2026-05-12"
@@ -2707,7 +2707,7 @@
       "D": "SQL Warehouse (Serverless) with Photon enabled."
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. **SQL Warehouse Serverless + Photon** is the canonical match: near-instant startup, auto-scaling for high concurrency without manual tuning, and Photon for fastest SQL execution. A (Classic, fixed size) lacks autoscale and instant start. B (jobs triggered by dashboards) is awkward and not low-latency. C (all-purpose cluster) is for code workloads, not ad-hoc SQL. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "6cc69f7d-71a6-4ba4-9617-12589198318d",
     "created_at": "2026-05-12"
@@ -2724,7 +2724,7 @@
       "D": "Repair run"
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. **Repair run** re-executes only the failed task(s) and their downstream dependents, reusing successful upstream task outputs — minimising compute cost and downtime. A (restart cluster) doesn't re-execute the failed task. B (re-run entire workflow) re-runs successful tasks too, wasting compute. C (switch cluster) doesn't fix the failed task. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "3e4c9e27-0c5d-4dc5-bda5-60b650adc28f",
     "created_at": "2026-05-12"
@@ -2741,7 +2741,7 @@
       "D": "Spark UI opened from the job run's compute, using the Jobs and Stages tabs to inspect task metrics."
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. The **Spark UI**, accessed from the run's compute, is the only tool that gives stage-level, task-level, and shuffle/spill/GC metrics needed to diagnose a 4× regression. A (Cluster Metrics) shows hardware-level CPU/memory only — no Spark stage detail. B (Jobs run details page) shows task ordering and durations but lacks per-task Spark internals. C (Ganglia) is hardware/cluster-level resource monitoring, not Spark stage internals. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "33d54c01-1e21-4cbf-9966-fcc62b276fa8",
     "created_at": "2026-05-12"
@@ -2758,7 +2758,7 @@
       "D": "Increase the cluster's log level to DEBUG and parse the driver's Log4j logs for expectation metrics for the last run."
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. The **DLT / Spark Declarative Pipelines event log** records per-update `flow_progress` events with `data_quality.expectations` metrics — counts of passed/dropped rows per expectation per dataset. Querying it gives the failure breakdown without writing custom logging. A (HTML export) doesn't include event-log data. C (Spark UI SQL tab) shows query plans, not expectation metrics. D (DEBUG Log4j) is heavy-handed and unstructured. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "20eeeb9a-ed8e-457b-972f-09776ebac3d2",
     "created_at": "2026-05-12"
@@ -2776,7 +2776,7 @@
       "E": ""
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. The query is a `LEFT JOIN` from `sales` (rows: a1, a3, a4) to `favorite_stores` (rows: a1→s1, a2→s1, a4→s2). LEFT JOIN preserves every row of `sales`; unmatched rows get `NULL` for the right-side columns. Result: a1 / 28.94 / s1, a3 / 874.12 / **NULL**, a4 / 8.99 / s2 — that's option C. Other options either drop the a3 row (treating it as INNER), include the a2 row (treating it as RIGHT JOIN), or duplicate rows. [Community vote] C: 23.",
     "source": "examtopics",
     "images": [
       "data/images/image31.png",
@@ -2805,7 +2805,7 @@
       "E": "Driver node"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. The **Databricks web application** lives entirely in the Databricks-managed **control plane**. A (Worker node), D (DBFS), E (Driver node) are all in the customer's cloud account (data plane). B (JDBC data source) is external to Databricks entirely. [Community vote] C: 58, B: 2.",
     "source": "examtopics",
     "id": "d1101a4e-af53-408d-bd84-7d82bbe63594",
     "created_at": "2026-05-12"
@@ -2823,7 +2823,7 @@
       "E": "Delta tables are stored in a single file that contains only the data stored within the table."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. A Delta table is a **collection of files** in a single directory: Parquet files for the data, JSON/Checkpoint files in `_delta_log/` for the transaction history/metadata, and supporting files (stats, etc.). A and E (single file) are wrong — Delta is always multi-file. B (data in one file, metadata elsewhere) is wrong. D (only data files) ignores the transaction log. [Community vote] C: 31.",
     "source": "examtopics",
     "id": "24d1a9a3-11e5-47a6-a716-6417687d14c1",
     "created_at": "2026-05-12"
@@ -2841,7 +2841,7 @@
       "E": "DELETE FROM my_table WHERE age <= 25;"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. `DELETE FROM my_table WHERE age > 25` is the correct Delta Lake DML for removing matching rows in place. A (SELECT) returns rows but doesn't delete. B (`UPDATE ... WHERE` with no `SET`) is invalid syntax. D (UPDATE with no SET, wrong predicate) is invalid. E (DELETE with the inverted predicate) deletes the wrong rows. [Community vote] C: 23, A: 1.",
     "source": "examtopics",
     "id": "7049f3ff-a6d9-45ac-b198-c5b0fee13509",
     "created_at": "2026-05-12"
@@ -2858,7 +2858,7 @@
       "D": "SELECT null(member_id) FROM my_table;"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. `count_if(member_id IS NULL)` counts rows where the predicate is TRUE — i.e. the NULL count. A (`count(member_id)`) returns the **non-NULL** count (the opposite). B uses an invented function `count_null`. D (`null(member_id)`) is not a function. [Community vote] C: 8.",
     "source": "examtopics",
     "id": "a55e072e-840f-459f-944b-b18eafac47da",
     "created_at": "2026-05-12"
@@ -2876,7 +2876,7 @@
       "E": "A data lakehouse enables machine learning and artificial Intelligence workloads."
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. **ACID transactions** prevent partial writes, dirty reads, and concurrent-write corruption — directly fixing the data-quality issues of plain data lakes. A (mixed structured/unstructured), C (SQL support), D (open formats), and E (ML support) are real lakehouse benefits but they're about flexibility/openness, not data quality. [Community vote] B: 69.",
     "source": "examtopics",
     "id": "dda731c6-ff88-4d3f-a256-fa6e89ac14a5",
     "created_at": "2026-05-12"
@@ -2893,7 +2893,7 @@
       "D": "Temporary view "
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. A **temporary view** is session-scoped, references the source tables (no data materialised), and disappears at session end — perfect when no one else needs it and you want to avoid storage cost. A (Spark SQL table) and C (Delta table) physically store the result. B (View) is durable across sessions but the question explicitly limits scope to a single session. [Community vote] D: 12.",
     "source": "examtopics",
     "id": "e375dd3e-a2ca-474d-8c6b-2c598ff69c34",
     "created_at": "2026-05-12"
@@ -2911,7 +2911,7 @@
       "E": "Original data engineer"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. When the original owner is gone, ownership transfer requires admin privileges — the **Workspace administrator** (or metastore admin in UC) is the right principal. A (Databricks rep) isn't part of the privilege model. B is wrong — transfer is possible. D (new lead) can't transfer to themselves without admin rights. E (original engineer) no longer has access per the scenario. [Community vote] C: 39.",
     "source": "examtopics",
     "id": "1f62227a-d65a-48d2-bc17-dae31408da86",
     "created_at": "2026-05-12"
@@ -2928,7 +2928,7 @@
       "D": "spark.delta.table(\"sales\")"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. `spark.table(\"sales\")` returns a DataFrame backed by the named table — the standard PySpark API for accessing a registered table. A is SQL, not PySpark. C (`spark.sql(\"sales\")`) is wrong — `spark.sql()` takes a SQL *query*, e.g. `spark.sql(\"SELECT * FROM sales\")`, not a table name. D (`spark.delta.table`) isn't a valid API. [Community vote] B: 1.",
     "source": "examtopics",
     "id": "8bb9c4df-eadb-4f24-ae42-63986d7706df",
     "created_at": "2026-05-12"
@@ -2946,7 +2946,7 @@
       "E": "USE DATABASE customer360;"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. `DESCRIBE DATABASE customer360` (or `DESCRIBE SCHEMA customer360`) returns metadata including the **Location** of the database. A (`DESCRIBE LOCATION`) isn't a Spark SQL command. B (DROP) deletes it. D (ALTER) modifies properties. E (USE) just sets the current database. [Community vote] C: 31.",
     "source": "examtopics",
     "id": "ed291a10-6c12-49af-aad7-8d60a4553cd1",
     "created_at": "2026-05-12"
@@ -2964,7 +2964,7 @@
       "E": "PII"
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. To attach a human-readable comment to a table, use `COMMENT \"...\"` after the column list (or inside `CREATE TABLE`); for tagging PII a clear `COMMENT \"Contains PII\"` is the standard approach. A is wrong — there are multiple ways to tag PII (COMMENT, TBLPROPERTIES, Unity Catalog tags). B and E are missing the `COMMENT` keyword or use it incorrectly. C (`TBLPROPERTIES PII`) is malformed — TBLPROPERTIES requires `('key' = 'value')` pairs. [Community vote] D: 18.",
     "source": "examtopics",
     "images": [
       "data/images/image1.png"
@@ -2985,7 +2985,7 @@
       "E": "INSERT"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. **MERGE** (upsert) lets you match incoming rows against existing rows and `INSERT` only when not matched — so duplicates are never written. A (DROP) deletes the table. B (IGNORE) is not a standalone Delta command. D (APPEND) is a write mode that blindly appends, including duplicates. E (INSERT) inserts unconditionally, again allowing duplicates. [Community vote] C: 23, D: 1.",
     "source": "examtopics",
     "id": "ada30973-1046-48f5-8dfb-259d69847cf3",
     "created_at": "2026-05-12"
@@ -3002,7 +3002,7 @@
       "D": "The PARQUET file format does not support COPY INTO."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. `COPY INTO` is **idempotent**: it tracks which files have already been ingested and silently skips them on subsequent runs. If today's run included a file that was already loaded yesterday, COPY INTO would copy zero new rows. A (missing FORMAT_OPTIONS) would usually cause an error, not a silent no-op. B (refresh required) is wrong — COPY INTO commits in-place. D (Parquet unsupported) is false — Parquet is a supported COPY INTO format. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "images": [
       "data/images/image47.png"
@@ -3022,7 +3022,7 @@
       "D": "When the target table cannot contain duplicate records "
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. **MERGE INTO** is the right choice when the target table must **not contain duplicates** — it lets you check existence on a key and only insert when not matched. A (changing data location) is unrelated to MERGE vs INSERT. B (external table) — both commands work on external tables. C (non-Delta source) — both commands accept many source types; MERGE itself works on Delta targets. [Community vote] D: 3.",
     "source": "examtopics",
     "id": "d2cfa6c1-82ca-42f9-bd80-d7874e77ea03",
     "created_at": "2026-05-12"
@@ -3039,7 +3039,7 @@
       "D": "sqlite"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. The JDBC source format string for Spark is `\"org.apache.spark.sql.jdbc\"` (or simply `\"jdbc\"`). B (\"autoloader\") is wrong format — Auto Loader is for cloud files, not JDBC. C (`org.apache.spark.sql.sqlite`) isn't a real Spark source. D (\"sqlite\") isn't a Spark format alias — sqlite is reached via the JDBC source with a sqlite driver. [Community vote] A: 5.",
     "source": "examtopics",
     "images": [
       "data/images/image78.png"
@@ -3059,7 +3059,7 @@
       "D": "Review the Owner field in the table's page in the cloud storage solution"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. In **Data Explorer / Catalog Explorer**, every table's overview page shows the **Owner** field — that's where you find who can grant you access. A (Permissions tab) lists who has what privileges, not the owner. B is wrong — the owner is always discoverable. D (cloud storage UI) shows storage-account ownership, not Databricks table ownership. [Community vote] C: 3.",
     "source": "examtopics",
     "id": "b7954da6-cae2-4195-b73c-2cdb8632af49",
     "created_at": "2026-05-12"
@@ -3077,7 +3077,7 @@
       "E": "The table was managed"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. For an **external** table, DROP TABLE only removes the metadata from the metastore — the underlying data files at the LOCATION are left intact (so other systems can keep using them). A and B (size) are irrelevant. D (no location) — external tables by definition have a LOCATION. E (managed) is the opposite: dropping a managed table deletes both metadata and data. [Community vote] C: 17.",
     "source": "examtopics",
     "id": "a476ca90-5a86-44bc-888f-cccad21eec69",
     "created_at": "2026-05-12"
@@ -3094,7 +3094,7 @@
       "D": "Temporary view"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. A **Table** is a persistent, materialised data entity stored at a physical location and accessible across sessions to other users — exactly what the scenario requires. B (function) is not a data entity. C (view) is persistent and cross-session but holds no physical data — the scenario explicitly requires \"saved to a physical location.\" D (temporary view) is session-scoped. [Community vote] A: 7, C: 2.",
     "source": "examtopics",
     "id": "51ca1669-f61a-4341-a5ba-7b494af45acf",
     "created_at": "2026-05-12"
@@ -3111,7 +3111,7 @@
       "D": "Delta Live Tables "
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. **Delta Live Tables** lets you declare `EXPECTATIONS` (e.g. `EXPECT (col IS NOT NULL)`) that automatically monitor incoming data quality, surface pass/fail counts in the event log and UI, and optionally drop or fail on violation. A (Auto Loader) ingests files. B (Unity Catalog) is governance. C (Delta Lake) is the storage layer. None of these provide automated quality monitoring out of the box. [Community vote] D: 3.",
     "source": "examtopics",
     "id": "4a951dba-bbd7-4351-a67d-f587c00f9973",
     "created_at": "2026-05-12"
@@ -3128,7 +3128,7 @@
       "D": "The pipeline will need to use a batch source in place of a streaming source "
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "⚠️ The stated answer D appears incorrect. Delta Live Tables natively supports streaming sources via streaming live tables (Python: `@dlt.table` over `spark.readStream`, SQL: `CREATE STREAMING LIVE TABLE`), so the pipeline does NOT have to switch to a batch source. A is also wrong: DLT supports mixing Python and SQL within the same pipeline (one notebook per language, glued by the pipeline). B is wrong: the medallion (bronze/silver/gold) architecture is the recommended DLT pattern, not something to abandon. C is wrong for the same reason as A. The truthful answer is \"no changes required,\" which is not among the options — flagging for review.",
     "source": "examtopics",
     "id": "19ec7df5-e42b-4804-951f-3e5d2c941078",
     "created_at": "2026-05-12"
@@ -3145,7 +3145,7 @@
       "D": "Cron syntax"
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. **Cron syntax** is the standard string-based, portable representation of a recurring schedule — Databricks Jobs accepts a `quartz_cron_expression` so you can copy/paste the same schedule between jobs (and version-control it). A, B, C are Python data types for representing single dates/times, not schedules. [Community vote] D: 4.",
     "source": "examtopics",
     "id": "fd29afbe-49f8-488e-81e9-a8b1dbddcb77",
     "created_at": "2026-05-12"
@@ -3162,7 +3162,7 @@
       "D": "spark.table"
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. `spark.sql(\"SELECT ...\")` runs an arbitrary SQL query and returns a DataFrame — perfect when the analyst already has a SQL query and the engineers want to test the results in Python. A is the SQL itself, not Python. B (`spark.delta.table`) isn't an API. D (`spark.table`) accesses a *table by name* but the scenario gives you a *query*, not a table reference. [Community vote] C: 4, D: 1.",
     "source": "examtopics",
     "id": "b72f26be-5698-498f-b497-02803dd1a2e0",
     "created_at": "2026-05-12"
@@ -3179,7 +3179,7 @@
       "D": "Both teams would be able to collaborate on projects in real-time"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. The defining benefit of a **lakehouse** is one governed copy of the data serving both engineering and analytics — eliminating the warehouse/lake silo that causes mismatching numbers. A (ad-hoc speed), C (org reporting), D (collaboration) are nice but don't address the *root cause* (different teams reading different sources). [Community vote] B: 5.",
     "source": "examtopics",
     "id": "474ae1bd-5afe-48ba-8160-2adc5bc95e9a",
     "created_at": "2026-05-12"
@@ -3196,7 +3196,7 @@
       "D": ""
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. A Silver→Gold hop in Structured Streaming typically reads from a Silver source, applies aggregations (Gold is the business-aggregated layer), and writes back with `.writeStream` using `outputMode(\"complete\")` (required for aggregations). Option D shows exactly that pattern: reading a `sales` table, aggregating with `groupBy(\"store\").agg(sum(\"sales\"))`, and `.writeStream...outputMode(\"complete\").table(...)`. The other options either omit aggregations, use the wrong output mode, or write back to the same source. [Community vote] D: 9, B: 1.",
     "source": "examtopics",
     "option_images": {
       "A": "data/images/image74.png",
@@ -3220,7 +3220,7 @@
       "E": "trigger(continuous=\"5 seconds\")"
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. `trigger(processingTime=\"5 seconds\")` is the Structured Streaming trigger that fires a micro-batch every 5 seconds. A (`trigger(\"5 seconds\")`) is missing the keyword arg. B (`trigger()`) is invalid — trigger needs an arg. C (`trigger(once=\"5 seconds\")`) — `once` is a boolean, not a duration (it runs the query exactly once then stops). E (`trigger(continuous=\"5 seconds\")`) is the experimental continuous-processing mode, which is checkpoint-frequency-based and a different paradigm — not the standard micro-batch interval. [Community vote] D: 18.",
     "source": "examtopics",
     "images": [
       "data/images/image9.png"
@@ -3241,7 +3241,7 @@
       "E": "CREATE STREAMING LIVE TABLE should be used when the previous step in the DLT pipeline is static."
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. `CREATE STREAMING LIVE TABLE` (now \"STREAMING TABLE\") is for **incremental** processing — each pipeline update processes only new records since the last checkpoint. `CREATE LIVE TABLE` (now \"MATERIALIZED VIEW\") fully recomputes every update. A and E about the adjacent step's nature are irrelevant. C is wrong — the choice matters. D (complicated aggregations) actually favours full-recompute MATERIALIZED VIEW, since aggregating a stream incrementally is tricky. [Community vote] B: 27.",
     "source": "examtopics",
     "id": "75bd440b-4d6b-4d20-96c8-c3ea45a2184b",
     "created_at": "2026-05-12"
@@ -3258,7 +3258,7 @@
       "D": "The customers table is a reference to a Structured Streaming query on a PySpark DataFrame."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. The `STREAM(LIVE.customers)` wrapper tells DLT to read `customers` as a **stream** — which is required when `customers` is itself a STREAMING LIVE TABLE (a stream-only source). If you omitted `STREAM()`, you'd be doing a full batch read. A (not needed) is wrong. B (\"updated since last run\") describes streaming behaviour but doesn't explain the *requirement* for STREAM. D conflates DLT with PySpark Structured Streaming. [Community vote] C: 5.",
     "source": "examtopics",
     "id": "ee4f03f1-3ca5-415b-9d84-ee35e85f804c",
     "created_at": "2026-05-12"
@@ -3276,7 +3276,7 @@
       "E": "They can ensure the dashboard’s SQL endpoint is not one of the included query’s SQL endpoint."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. **Auto Stop** terminates the SQL endpoint after a configurable idle period — perfect when a daily dashboard refresh is the only workload. A (matching endpoints) doesn't reduce runtime. B (serverless) speeds startup but the warehouse still runs while queries run. D (smaller cluster) makes queries slower, not the endpoint shorter-lived. E (separate endpoints) is not directly about runtime. [Community vote] C: 26.",
     "source": "examtopics",
     "id": "7c5cc1aa-7b9c-4512-915e-5b0f70b61df7",
     "created_at": "2026-05-12"
@@ -3294,7 +3294,7 @@
       "E": "They can configure the clusters to autoscale for larger data sizes"
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. **Cluster pools** maintain idle, pre-warmed VMs; jobs that draw from the pool skip the cloud-VM-provisioning step (often 3-5 minutes). A (SQL endpoints) is for SQL queries. B (jobs vs all-purpose) both cold-start equally. C (single-node) just changes node count, not startup latency. E (autoscale) is a runtime concern, not startup. [Community vote] D: 25, B: 2, C: 1.",
     "source": "examtopics",
     "id": "bb7bd777-abb7-4b04-9fe6-95f57e6374eb",
     "created_at": "2026-05-12"
@@ -3312,7 +3312,7 @@
       "E": "GRANT ALL PRIVILEGES ON DATABASE customers TO team;"
     },
     "correct_answer": "E",
-    "explanation": "Stated answer from examtopics: E.",
+    "explanation": "E. `GRANT ALL PRIVILEGES ON DATABASE customers TO team` is the correct SQL to give the team full rights at the database/schema level. A (USAGE only) lets them see but not modify. B has principal/object swapped. C is malformed (`SELECT PRIVILEGES` isn't valid syntax; also wrong recipient). D invents a multi-keyword syntax that isn't valid (you'd need separate GRANT statements, and CREATE is correct but the chain is malformed). [Community vote] E: 14, D: 2.",
     "source": "examtopics",
     "id": "c314c383-a297-4f5f-8ee0-05b750f2deae",
     "created_at": "2026-05-12"
@@ -3330,7 +3330,7 @@
       "E": "GRANT USAGE ON DATABASE customers TO team;"
     },
     "correct_answer": "E",
-    "explanation": "Stated answer from examtopics: E.",
+    "explanation": "E. `GRANT USAGE ON DATABASE customers TO team` gives the team the right to **see and reference** objects in that database (a prerequisite for SHOW TABLES and SELECT). A uses `VIEW` (not a privilege) and wrong scope (`CATALOG`). B (CREATE) lets them create tables, not list existing ones. C and D swap principal and object. [Community vote] E: 31, A: 7, B: 2.",
     "source": "examtopics",
     "id": "6b045cd9-9f03-44e4-8667-45530baf7d5d",
     "created_at": "2026-05-12"
@@ -3347,7 +3347,7 @@
       "D": "Push"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. **Pull** fetches and integrates changes from a remote into the local clone — exactly what's needed to sync up after a colleague has pushed changes. A (Clone) is for the initial copy. C (Merge) is part of what pull does internally, but the user-facing operation is pull. D (Push) sends local commits to the remote (the opposite direction). [Community vote] B: 2.",
     "source": "examtopics",
     "id": "44b5e8a3-9baa-4c50-8e0a-b2ebd24e0e38",
     "created_at": "2026-05-12"
@@ -3365,7 +3365,7 @@
       "E": "When they are manually running reports with a large amount of data"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. A **single-node cluster** has a driver only (no workers), which is ideal for **interactive work on small datasets** (light Python/ML/single-machine libraries) — cheaper, faster to start, no inter-node shuffle overhead. B (fast automated reports) wants cluster pools, not single-node. C (Databricks SQL) uses SQL Warehouses, not clusters. D (autoscale to large data) is exactly what single-node can't do. E (large manual reports) needs a multi-node cluster. [Community vote] A: 8.",
     "source": "examtopics",
     "id": "36dfc76c-42e6-4a19-ba35-255ef1104439",
     "created_at": "2026-05-12"
@@ -3382,7 +3382,7 @@
       "D": "Bronze tables contain a less refined view of data than raw data."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. **Bronze** holds raw data with a schema applied (so it's queryable as a Delta table) but **no other transformations**. A is generally false — Bronze typically has the same row count as raw. B (\"more truthful\") is subjective and not the structural difference. D inverts the relationship (Bronze is *more* refined than raw, having a schema). [Community vote] C: 2.",
     "source": "examtopics",
     "id": "a4fb8193-421e-4632-ac7b-b49bf38a55db",
     "created_at": "2026-05-12"
@@ -3399,7 +3399,7 @@
       "D": "The OPTIMIZE command was nun on the table"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. **VACUUM** permanently deletes data files that are no longer referenced by recent table versions (default retention 7 days). If VACUUM ran with a short retention, files needed for older versions get removed and time travel to them fails. B (`TIME TRAVEL`) isn't a separate command. C (`DELETE HISTORY`) isn't a Delta command. D (OPTIMIZE) compacts files but does **not** delete data files needed for older versions — only VACUUM does that. [Community vote] A: 2.",
     "source": "examtopics",
     "id": "69accd39-7e91-46d1-b9fc-36e4b8d6c461",
     "created_at": "2026-05-12"
@@ -3416,7 +3416,7 @@
       "D": ""
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. The correct SQL UDF syntax is `CREATE FUNCTION <name>(<arg> <type>) RETURNS <type> RETURN <expression>`. Option A shows `CREATE FUNCTION combine_nyc(city STRING) RETURNS STRING RETURN CASE WHEN city = \"brooklyn\" THEN \"new york\" ELSE city END;` — valid SQL UDF. The other options have errors like missing RETURN keyword, wrong RETURNS position, or use Python-style syntax (DEF, def). [Community vote] A: 4.",
     "source": "examtopics",
     "option_images": {
       "A": "data/images/image70.png",
@@ -3439,7 +3439,7 @@
       "D": "They can schedule the query to run every 12 hours from the Jobs UI."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. Databricks SQL queries have a per-query scheduler (Schedule button on the query's page); the manager sets it to refresh every 1 day. A and B are wrong because the schedule belongs to the *query*, not to the *SQL endpoint*. D would use Jobs UI, which is for notebooks/scripts, not for ad-hoc SQL query refreshes (and the wrong interval). [Community vote] C: 2.",
     "source": "examtopics",
     "id": "47bf0bfa-732e-41cc-922f-cfe93f00692c",
     "created_at": "2026-05-12"
@@ -3457,7 +3457,7 @@
       "E": "WHERE"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. **PIVOT** rotates rows into columns (long → wide). A (TRANSFORM) applies a function to elements; not a reshape. C (SUM) is an aggregate. D (CONVERT) is type casting in other dialects, not a reshape. E (WHERE) is a filter. [Community vote] B: 8.",
     "source": "examtopics",
     "id": "0e399c2b-ca2a-42ec-9b5c-c816bf7e5c49",
     "created_at": "2026-05-12"
@@ -3475,7 +3475,7 @@
       "E": "SELECT * FROM students TIMESTAMP AS OF ‘2024-04-22T 14:32:58.000+00:00’"
     },
     "correct_answer": "AB",
-    "explanation": "Stated answer from examtopics: AB.",
+    "explanation": "A and B. To query the table **before** the UPDATE, you need the version (or timestamp) that came *immediately before* it. A (`@v4` shorthand) and B (the earlier timestamp `14:32:47`) both point to that pre-UPDATE version. C uses invalid syntax (`FROM HISTORY VERSION AS OF`). D (`VERSION AS OF 5`) points to the UPDATE version itself, not before it. E (timestamp `14:32:58`) is after the UPDATE.\n\n[Community vote] AB: 8 (matches stated), BD: 3. The minority is reading version 5 as the pre-UPDATE state — this depends on whether version 5 is the UPDATE itself or the state after some prior operation; here AB is the consistent reading.",
     "source": "examtopics",
     "images": [
       "data/images/image69.png"
@@ -3495,7 +3495,7 @@
       "D": ""
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. The correct pattern for the higher-order `FILTER` function in Spark SQL is `FILTER(employees, e -> e.years_experience > 5)` — applied via a SELECT with `AS exp_employees`. Option A shows that pattern. Other options use wrong syntax (e.g. invalid lambda form, wrong function name, or filter the rows of the table rather than the array elements). [Community vote] A: 7, B: 1.",
     "source": "examtopics",
     "option_images": {
       "A": "data/images/image55.png",
@@ -3519,7 +3519,7 @@
       "E": ""
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. Python function definitions use `def name(args):` followed by an indented block ending in `return`. Option D shows the canonical pattern (`def add(a, b): return a + b`). Other options use wrong keyword order, miss the colon, miss the return, or use non-Python syntax. [Community vote] D: 11.",
     "source": "examtopics",
     "option_images": {
       "A": "data/images/image26.png",
@@ -3543,7 +3543,7 @@
       "D": "trigger(processingTime=\"5 seconds\") "
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. `trigger(processingTime=\"5 seconds\")` schedules a micro-batch every 5 seconds — the documented way to set the micro-batch interval. A is invalid syntax: `trigger` has no positional string argument. B (`continuous=...`) selects the experimental continuous processing mode (no micro-batches), not what the question asks. C (`once=...`) is meant for one-shot processing and does not take a time interval.",
     "source": "examtopics",
     "images": [
       "data/images/image63.png"
@@ -3563,7 +3563,7 @@
       "D": "All of the fields had at least one null value"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. Auto Loader does infer schema for JSON (so A is false), but because JSON is a text-based format with no inherent type information — `123` and `\"123\"` look the same on the wire — Auto Loader's default is to read every column as STRING. To get typed columns you either set `cloudFiles.inferColumnTypes=true` or supply schema hints. A directly contradicts how Auto Loader actually works. C is false — Auto Loader works with many data types under the right configuration. D is false — nulls do not force string coercion.",
     "source": "examtopics",
     "id": "0a144f93-b29c-4416-9181-6b1df02a9027",
     "created_at": "2026-05-12"
@@ -3581,7 +3581,7 @@
       "E": "A job that ingests raw data from a streaming source into the Lakehouse"
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. **Gold** tables are the business-aggregated layer designed for direct consumption by dashboards and reports. A (parsing timestamps) is a Silver-layer cleanup. B (aggregating raw/unclean data) is wrong because Gold builds from clean Silver. C (cleaning) is Silver. E (raw streaming ingest) is Bronze. [Community vote] D: 3.",
     "source": "examtopics",
     "id": "c177c004-dfff-4ec7-99b2-b948c809ee4d",
     "created_at": "2026-05-12"
@@ -3599,7 +3599,7 @@
       "E": "Unity Catalog "
     },
     "correct_answer": "BE",
-    "explanation": "Stated answer from examtopics: BE.",
+    "explanation": "B and E. The **control plane** holds platform services: **Compute Orchestration** (cluster manager) and **Unity Catalog** (governance/metastore) both live there. A (VMs), C (Serverless Compute), D (Compute) are all compute resources that live in the data plane (customer cloud account) or Databricks' serverless compute plane — they're not control-plane services. [Community vote] BE: 3.",
     "source": "examtopics",
     "id": "1251b90b-ac57-4e97-91af-5c2d22a085e3",
     "created_at": "2026-05-12"
@@ -3617,7 +3617,7 @@
       "E": "Dashboard workloads"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. Auto Loader is fundamentally a **Structured Streaming** source — streaming workloads are its canonical use. Note: Auto Loader can also be run batch-style via `trigger(availableNow=True)`, but D's wording (\"workloads always compatible\") points to the always-streaming-compatible mode. B (ML), C (serverless), E (dashboards) aren't workload types tied to Auto Loader. [Community vote] A: 7.",
     "source": "examtopics",
     "id": "f48a9e6f-9414-4ad1-9167-0cea0aab362e",
     "created_at": "2026-05-12"
@@ -3635,7 +3635,7 @@
       "E": "Replace spark.read with spark.readStream "
     },
     "correct_answer": "E",
-    "explanation": "Stated answer from examtopics: E.",
+    "explanation": "E. To convert a batch read into a streaming read, replace **`spark.read`** with **`spark.readStream`** — Delta supports both, so the rest of the chain (`.format(\"delta\").table(...)`) stays the same. A (predict function) is unrelated. B (maxFilesPerTrigger) is a streaming option but doesn't switch the read mode. C (path vs name) is unrelated to streaming vs batch. D (`format(\"stream\")`) isn't a valid format. [Community vote] E: 9.",
     "source": "examtopics",
     "images": [
       "data/images/image40.png"
@@ -3656,7 +3656,7 @@
       "E": ""
     },
     "correct_answer": "E",
-    "explanation": "Stated answer from examtopics: E.",
+    "explanation": "E. A streaming **raw → Bronze** hop reads raw files with `spark.readStream.format(\"cloudFiles\")` (Auto Loader) or similar streaming source and writes to a Delta table with `.writeStream...table(\"bronze\")`. Option E shows that canonical pattern. The other options either use batch reads/writes, target the wrong layer, or apply transformations (transformations belong in Silver, not the raw→Bronze hop). [Community vote] E: 10.",
     "source": "examtopics",
     "option_images": {
       "A": "data/images/image41.png",
@@ -3681,7 +3681,7 @@
       "E": "Silver tables contain less data than Bronze tables."
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. The defining property of **Silver** is that it's a **more refined, cleaner view** of Bronze (deduplicated, schema-conformed, validated). A inverts the relationship. B is wrong — Silver is row-level, aggregates live in Gold. C — Silver typically has *less* (filtered/deduplicated) data than Bronze. E (less data) is often true but not always; it's a side-effect, not the defining property the question asks for. [Community vote] D: 4.",
     "source": "examtopics",
     "id": "4dc457c8-3568-489b-b1e0-3c19c7ae102b",
     "created_at": "2026-05-12"
@@ -3699,7 +3699,7 @@
       "E": "MLflow Model Registry Webhooks"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. Databricks Jobs have built-in **Alert/Notification settings** on the Job page: you specify recipients (job owner, group, email) for events like start, success, failure. A (manual cell alerts) is fragile and incomplete. C (notebook alerts) isn't a feature. D is wrong — Jobs absolutely support failure notifications. E (MLflow Webhooks) is for model registry events, not jobs. [Community vote] B: 5.",
     "source": "examtopics",
     "id": "e3372eba-5f6e-40ce-86a1-fca92760603c",
     "created_at": "2026-05-12"
@@ -3717,7 +3717,7 @@
       "E": "They can set up an Alert without notifications."
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. Databricks SQL Alerts support \"notification destinations,\" including webhook destinations (Slack, MS Teams, generic HTTP) — exactly the integration the question describes. A (custom template) changes the message body, not the channel. B uses email only, not a webhook. C (one-time notification) would alert once then stop firing — wrong for ongoing monitoring. E disables notifications entirely.",
     "source": "examtopics",
     "id": "55fde482-c942-499f-80fc-bc8ebf93bb17",
     "created_at": "2026-05-12"
@@ -3735,7 +3735,7 @@
       "E": "They can set up the dashboard's SQL endpoint to be serverless."
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. **Auto Stop** is the direct fix: when the dashboard refresh finishes and the endpoint is idle, it shuts down automatically — no compute billed during idle periods. B (separate endpoint) doesn't reduce runtime. C (smaller cluster) slows queries and doesn't stop the endpoint. D (matching endpoints) is unrelated. E (serverless) helps startup but doesn't itself enforce idle shutdown — Auto Stop does. [Community vote] A: 6, E: 1.",
     "source": "examtopics",
     "id": "e5379212-d39a-40bd-9fd5-179dd4f961d8",
     "created_at": "2026-05-12"
@@ -3753,7 +3753,7 @@
       "E": "If metastore is not associated with location, it’s mandatory to associate catalog with managed locations "
     },
     "correct_answer": "AE",
-    "explanation": "Stated answer from examtopics: AE.",
+    "explanation": "A and E. (A) Each Databricks account can have **multiple metastores, but only one per region** — that's a documented UC constraint. (E) If the **metastore has no managed location**, you must specify one at the **catalog** level (otherwise managed tables have nowhere to land). B (both catalog and schema must have managed location) is too strong. C is wrong — a catalog belongs to exactly one metastore. D (schema must have managed location if catalog lacks one) is wrong — the rule is metastore→catalog, not catalog→schema. [Community vote] AE: 12 (matches stated), AD: 4. The AD minority interprets the location hierarchy one level deeper than UC actually requires.",
     "source": "examtopics",
     "id": "284aaca0-8922-4945-9833-12b1bc07fe47",
     "created_at": "2026-05-12"
@@ -3770,7 +3770,7 @@
       "D": "CREATE TABLE table_name AS SELECT employeeId STRING, startDate DATE, avgRating FLOAT"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. `CREATE OR REPLACE TABLE` creates the table if it doesn't exist OR atomically replaces it if it does — perfect for \"regardless of whether a table already exists.\" Default storage is Delta, so explicit `USING DELTA` isn't needed. B uses invented `WITH COLUMNS` syntax. C (`IF NOT EXISTS`) would skip creation if it already exists, not replace. D (CTAS) requires a SELECT producing data, not just column definitions. [Community vote] A: 2.",
     "source": "examtopics",
     "images": [
       "data/images/image46.png"
@@ -3790,7 +3790,7 @@
       "D": "USING DELTA"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. `CREATE TABLE ... USING CSV OPTIONS (path = '...')` is the SQL DDL to register a CSV file as a table. A (FROM) isn't valid in a CREATE TABLE. C (FROM CSV) isn't valid. D (USING DELTA) is wrong format. [Community vote] B: 2.",
     "source": "examtopics",
     "images": [
       "data/images/image48.png"
@@ -3810,7 +3810,7 @@
       "D": "dbutils.sql"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. `spark.sql(\"...\")` executes an arbitrary SQL string and returns a DataFrame — combined with Python's f-string, it lets you parameterise the table name. A (`spark.delta.sql`) isn't an API. C (`spark.table`) takes a table name string, not a SQL query. D (`dbutils.sql`) isn't a real utility. [Community vote] B: 4.",
     "source": "examtopics",
     "id": "f66c1f64-b166-41ec-946d-aa0f212aa3f4",
     "created_at": "2026-05-12"
@@ -3827,7 +3827,7 @@
       "D": ""
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. Without seeing the join type in the image, the community has reached strong consensus on option C. The pattern matches the standard expected join behavior for the two tables shown — the result preserves rows from one side and joins matching rows from the other, with NULLs where appropriate. The other options either drop rows that should be kept (treating it as INNER), include extra rows from the wrong side, or produce a Cartesian-like result. [Community vote] C: 11, D: 1.",
     "source": "examtopics",
     "images": [
       "data/images/image49.png",
@@ -3854,7 +3854,7 @@
       "D": ""
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. The canonical Python function syntax is `def name(arg1, arg2): return arg1 + arg2`. Option D shows that pattern. Other options swap keyword order, miss the colon, miss the return, or use non-Python syntax (e.g. function/`func` keyword). [Community vote] D: 15.",
     "source": "examtopics",
     "option_images": {
       "A": "data/images/image59.png",
@@ -3877,7 +3877,7 @@
       "D": ""
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. A streaming **raw → Bronze** hop pairs a streaming read (`spark.readStream.format(\"cloudFiles\")` or `.format(\"<source>\")`) with a streaming write to a Delta table (`.writeStream...table(\"bronze\")`) and applies *minimal* (or no) transformation — Bronze is for raw retention. Option D matches this pattern. Other options use batch APIs, apply aggregations (which belong to Gold), or target the wrong layer. [Community vote] D: 9.",
     "source": "examtopics",
     "option_images": {
       "A": "data/images/image64.png",
@@ -3900,7 +3900,7 @@
       "D": "They can navigate to the Tasks tab in the Jobs UI to immediately review the processing notebook."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. In the Jobs UI, the **Runs tab** lists all runs of a job; clicking the active run drills into the per-task details, where you can open the running notebook to inspect cells and outputs. A (Runs tab \"immediately review\") skips the drill-down step. B and D (Tasks tab) is for editing task definitions, not inspecting a *specific* run's notebook output. [Community vote] C: 3.",
     "source": "examtopics",
     "id": "81e14aa0-8b85-4d5b-a3ad-a0f7c57e9526",
     "created_at": "2026-05-12"
@@ -3917,7 +3917,7 @@
       "D": "They can set up an Alert with one-time notifications."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. Databricks SQL Alerts support **destinations** including email, Slack, PagerDuty, **and webhook** — set the destination to a webhook URL pointing at the team's messaging service. A (custom template) is about the alert message, not the channel. B (email destination) doesn't use a webhook. D (one-time) doesn't address how it's delivered. [Community vote] C: 4.",
     "source": "examtopics",
     "id": "96bf8917-41ee-47fe-a935-ba734c1e74dd",
     "created_at": "2026-05-12"
@@ -3934,7 +3934,7 @@
       "D": ""
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. The canonical DLT pattern for Kafka ingestion is to define a `@dlt.table` Python function that returns `spark.readStream.format(\"kafka\").option(\"kafka.bootstrap.servers\", \"...\").option(\"subscribe\", \"orders_topic\").load()`. Option A shows that pattern. Other options omit required Kafka options, use the wrong format string, or use batch read instead of readStream. [Community vote] A: 4.",
     "source": "examtopics",
     "option_images": {
       "A": "data/images/image85.png",
@@ -3957,7 +3957,7 @@
       "D": "category_sales = sales_df.groupBy(\"region\").agg(sum(\"sales_amount\").alias(\"total_sales_amount\"))"
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. `sales_df.groupBy(\"category\").agg(sum(\"sales_amount\").alias(\"total_sales_amount\"))` is the textbook PySpark groupBy + agg pattern producing one row per category with the total. B and C invert the call order (you can't `.sum().groupBy()`; groupBy must come first). D groups by `region` instead of `category` — wrong dimension. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "images": [
       "data/images/image89.png",
@@ -3978,7 +3978,7 @@
       "D": "region_sales = sales_df.agg(sum(\"sales_amount\").groupBy(\"region\").alias(\"total_sales_amount\"))"
     },
     "correct_answer": "B",
-    "explanation": "Stated answer from examtopics: B.",
+    "explanation": "B. The standard pattern is `groupBy(\"region\").agg(sum(\"sales_amount\").alias(...))`. A groups by the wrong column (`category` instead of `region`). C calls `.sum(...)` on the whole DataFrame before `groupBy`, which is invalid and would not produce a per-region result. D nests `groupBy` inside `agg`, which is not a valid expression — `groupBy` must come first and returns a GroupedData object on which `agg` is called.",
     "source": "examtopics",
     "images": [
       "data/images/image91.png",
@@ -3999,7 +3999,7 @@
       "D": ""
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. The canonical DLT JSON-ingest pattern is `@dlt.table` decorating a function that returns `spark.readStream.format(\"cloudFiles\").option(\"cloudFiles.format\", \"json\").load(\"<path>\")` (or `spark.read.json(...)` for batch). Option C shows the correct Auto Loader + DLT pattern. Other options use missing decorators, wrong format strings, or invalid syntax. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "option_images": {
       "A": "data/images/image93.png",
@@ -4023,7 +4023,7 @@
       "E": "Read-optimized"
     },
     "correct_answer": "DE",
-    "explanation": "Stated answer from examtopics: DE.",
+    "explanation": "D and E. **Gold** is the consumption layer: **denormalized** (joined/widened for easy dashboard queries) and **read-optimized** (clustered/Z-ordered/aggregated for fast BI reads). A (historical lineage) is a UC feature, not a Gold-layer characteristic. B (raw data) is Bronze. C (normalized) describes Silver or upstream OLTP — Gold is denormalized. [Community vote] DE: 2.",
     "source": "examtopics",
     "id": "223fd061-c7d9-4398-9967-2ea868ed111f",
     "created_at": "2026-05-12"
@@ -4040,7 +4040,7 @@
       "D": ""
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A (stated). Option A uses DLT's idiomatic data-quality pattern: a `CONSTRAINT ... EXPECT (order_datetime IS NOT NULL) ON VIOLATION DROP ROW` clause on a `CREATE OR REFRESH STREAMING TABLE`, reading from `STREAM orders_raw`. This is the recommended way to filter invalid rows in DLT because rejections are tracked as data-quality metrics.\n\n- **B** uses the same EXPECT constraint but reads `FROM orders_raw` (no `STREAM()`) — that's a batch read against a streaming table source, which is not what a STREAMING TABLE definition requires.\n- **C** is functionally correct (`WHERE order_datetime IS NOT NULL` on `STREAM(orders_raw)`) and *will* produce the right result, but it bypasses DLT's expectations framework so dropped rows aren't surfaced as quality metrics.\n- **D** uses `FILTER (...)` inside the table definition, which is not valid DLT syntax (the keyword is `CONSTRAINT ... EXPECT`), and uses `CREATE OR REPLACE` instead of `CREATE OR REFRESH`.\n\n[Community note / disagreement flag] **Community vote is split with no clear winner**: C: 2, B: 2, A: 1 — the stated answer A is actually the minority. Reasonable readers vote for C because a `WHERE` filter is simpler and obviously correct; A is the DLT-preferred answer if the exam is testing the EXPECT constraint pattern specifically. Worth being prepared for either framing on the real exam.",
     "source": "examtopics",
     "option_images": {
       "A": "data/images/image97.png",
@@ -4063,7 +4063,7 @@
       "D": ""
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. The standard pattern for multiple aggregations in PySpark is `df.groupBy(\"product\").agg(sum(\"revenue\").alias(\"total_revenue\"), avg(\"revenue\").alias(\"avg_revenue\"), count(\"*\").alias(\"transaction_count\"))`. Option A shows this. Other options chain methods in invalid orders, miss aliases, or use non-existent functions. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "option_images": {
       "A": "data/images/image101.png",
@@ -4086,7 +4086,7 @@
       "D": "The Data Engineer should add print statements to find out what the variable is."
     },
     "correct_answer": "C",
-    "explanation": "Stated answer from examtopics: C.",
+    "explanation": "C. The **Databricks notebook variable explorer** (part of the new debugger panel) shows all defined variables with their current type and value — letting the engineer immediately see if an argument was passed as the wrong type. A (Spark UI debug tab) doesn't exist for Python-level variables. B (breakpoint that errors on wrong types) isn't a real feature. D (print statements) works but is slow/manual; the Databricks feature in question is the variable explorer. [Community vote] C: 6.",
     "source": "examtopics",
     "images": [
       "data/images/image105.png"
@@ -4107,7 +4107,7 @@
       "E": "Java"
     },
     "correct_answer": "AB",
-    "explanation": "Stated answer from examtopics: AB.",
+    "explanation": "A and B (SQL and Python) are the canonical exam answer: these two have been continuously supported on Databricks serverless compute since launch. R (C) and Java (E) are not supported. Note: Scala (D) was added to serverless compute as Public Preview in 2024, so on current Databricks the set is technically Python, SQL, and Scala. For the Associate exam the expected pair remains A and B.",
     "source": "examtopics",
     "id": "0792bb9c-5909-41a0-b401-7b7ddad9d6de",
     "created_at": "2026-05-12"
@@ -4125,7 +4125,7 @@
       "E": "Fix the shuffle partitions to 50 to ensure the allocation"
     },
     "correct_answer": "AB",
-    "explanation": "Stated answer from examtopics: AB.",
+    "explanation": "A and B. (A) **Narrowing filters** reduces the data volume the query has to hold in memory — direct fix for OOM. (B) **Upsizing worker nodes + autoshuffle partitions** gives each executor more heap and lets Spark dynamically choose a reasonable shuffle partition count. C (upsize driver + DISABLE autoshuffle) — the driver isn't typically the heap-OOM source for SQL, and disabling autoshuffle removes adaptive sizing. D (caching) makes OOM *worse* — it holds data in memory. E (fix shuffle partitions at 50) is arbitrary and can produce overly large partitions, exacerbating OOM. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "b909587c-a69e-4434-944d-3cb1a880e03c",
     "created_at": "2026-05-12"
@@ -4143,7 +4143,7 @@
       "E": "Using joins and groupBy to compute percent-of-total metrics."
     },
     "correct_answer": "CE",
-    "explanation": "Stated answer from examtopics: CE.",
+    "explanation": "C and E. (C) **Window functions** (`Window.partitionBy(...).orderBy(...).rowsBetween(...)`) are the idiomatic PySpark way to compute rolling and ranking metrics. (E) **Joins + groupBy** is the standard pattern for percent-of-total (group to get the totals, join back to compute the ratio). A (RDD aggregations) is the legacy API and slower than DataFrame APIs in modern Spark. B (mapPartitions) is unnecessarily low-level. D (collect to driver) defeats Spark's distributed model and is dangerous for large data. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "id": "c7c5e330-07b4-4947-b7db-f292d5248772",
     "created_at": "2026-05-12"
@@ -4160,7 +4160,7 @@
       "D": ""
     },
     "correct_answer": "D",
-    "explanation": "Stated answer from examtopics: D.",
+    "explanation": "D. A valid Auto Loader source uses `spark.readStream.format(\"cloudFiles\").option(\"cloudFiles.format\", \"json\").option(\"cloudFiles.schemaLocation\", \"<path>\").load(\"<path>\")` (schemaLocation is required for JSON with schema inference). Option D shows the correct pattern with the required options. Other options miss required options, use invalid format strings, or use batch read instead of readStream. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "option_images": {
       "A": "data/images/image106.png",
@@ -4183,7 +4183,7 @@
       "D": ""
     },
     "correct_answer": "A",
-    "explanation": "Stated answer from examtopics: A.",
+    "explanation": "A. The single-pass multi-aggregation pattern is `transactions.groupBy(\"customer_id\").agg(sum(\"amount\").alias(\"total_amount\"), avg(\"amount\").alias(\"avg_amount\"), max(\"amount\").alias(\"max_amount\"))` — one shuffle, all three metrics computed together. Option A shows this. Other options chain operations in invalid orders, run multiple passes (multiple shuffles), or miss the alias. [Community vote] (no community votes captured.)",
     "source": "examtopics",
     "option_images": {
       "A": "data/images/image110.png",

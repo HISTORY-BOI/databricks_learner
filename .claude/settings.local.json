@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:www.databricks.com)"
+      "WebFetch(domain:www.databricks.com)",
+      "Bash(python3 *)"
     ]
   }
 }
